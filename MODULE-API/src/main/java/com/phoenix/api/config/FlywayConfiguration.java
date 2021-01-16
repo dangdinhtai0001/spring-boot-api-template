@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
+/**
+ * Flyway Configuration
+ */
 @Configuration
 public class FlywayConfiguration {
     private final FlywayConfig flywayConfig;

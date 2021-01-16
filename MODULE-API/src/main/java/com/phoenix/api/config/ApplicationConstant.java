@@ -26,5 +26,10 @@
 package com.phoenix.api.config;
 
 public final class ApplicationConstant {
+
+    /**
+     * file name what save in4 of secret key
+     */
     public static final String KEY_FILE = "key.dat";
+
 }
