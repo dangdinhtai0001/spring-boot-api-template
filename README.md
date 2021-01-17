@@ -13,6 +13,7 @@ You may obtain a copy of the License at
 
 This project uses source code from
 - https://github.com/Spring-Boot-Framework/Spring-Boot-Application-Template.git, Copyright (c) 2020 anantharajuc
+- https://github.com/samdjstevens/java-totp.git, Copyright (c) 2019 Sam Stevens
 
 Licensed under the MIT License
 

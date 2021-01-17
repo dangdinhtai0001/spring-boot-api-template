@@ -26,9 +26,9 @@
 package com.phoenix.api.filter;
 
 import com.phoenix.api.config.ApplicationUrls;
-import com.phoenix.common.jsonwebtoken.Scope;
-import com.phoenix.common.jsonwebtoken.TokenProvider;
-import com.phoenix.common.jsonwebtoken.component.Claims;
+import com.phoenix.common.security.Scope;
+import com.phoenix.common.security.TokenProvider;
+import com.phoenix.common.security.component.Claims;
 import com.phoenix.common.lang.Strings;
 import lombok.extern.log4j.Log4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -73,7 +73,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         String path = httpServletRequest.getRequestURI();
         String ip = httpServletRequest.getRemoteAddr();
-        log.info(String.format("Incoming request to URI: %s from IP: %s", path, ip));
+        log.info(String.format("Incoming request from IP: %s to URI: %s", ip, path));
 
         //0. get token from request
         String jwt = getTokenFromRequest(httpServletRequest);

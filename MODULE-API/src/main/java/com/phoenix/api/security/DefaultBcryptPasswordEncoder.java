@@ -24,7 +24,7 @@
 
 package com.phoenix.api.security;
 
-import com.phoenix.common.crypto.BCryptPasswordEncoder;
+import com.phoenix.common.security.crypto.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class DefaultBcryptPasswordEncoder extends BCryptPasswordEncoder implements PasswordEncoder {

@@ -28,7 +28,7 @@ package com.phoenix.api.config;
 import com.phoenix.api.filter.JwtAuthenticationFilter;
 import com.phoenix.api.security.DefaultBcryptPasswordEncoder;
 import com.phoenix.api.security.JwtAuthenticationEntryPoint;
-import com.phoenix.common.jsonwebtoken.TokenProvider;
+import com.phoenix.common.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

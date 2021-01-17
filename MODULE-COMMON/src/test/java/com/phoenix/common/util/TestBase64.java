@@ -25,8 +25,8 @@
 package com.phoenix.common.util;
 
 import com.phoenix.common.exception.ioe.SerializationException;
-import com.phoenix.common.jsonwebtoken.common.GsonSerializer;
-import com.phoenix.common.jsonwebtoken.common.Serializer;
+import com.phoenix.common.security.common.GsonSerializer;
+import com.phoenix.common.security.common.Serializer;
 import org.junit.Test;
 
 public class TestBase64 {

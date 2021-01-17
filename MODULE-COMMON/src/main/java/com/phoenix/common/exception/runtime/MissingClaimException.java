@@ -25,8 +25,8 @@
 
 package com.phoenix.common.exception.runtime;
 
-import com.phoenix.common.jsonwebtoken.component.Claims;
-import com.phoenix.common.jsonwebtoken.component.Header;
+import com.phoenix.common.security.component.Claims;
+import com.phoenix.common.security.component.Header;
 
 /**
  * Exception thrown when discovering that a required claim is not present, indicating the JWT is
