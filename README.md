@@ -1,6 +1,4 @@
-# spring-boot-api-template
-
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/dangdinhtai0001/spring-boot-api-template/tree/dangdinhtai)
+# spring-boot-api-template [![Build Status](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template.svg?branch=master)](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template)
 
 This project uses source code from 
  - https://github.com/jwtk/jjwt.git, Copyright (C) 2014 jsonwebtoken.io
