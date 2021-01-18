@@ -20,15 +20,18 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
  */
 
-package com.phoenix.common.mfa;
+package com.phoenix.common.mfa.generator;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Writer;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.phoenix.common.exception.runtime.QrGenerationException;
+import com.phoenix.common.mfa.MfaUtils;
+import com.phoenix.common.mfa.data.MfaData;
 import com.phoenix.common.patch.zxing.MatrixToImageWriter;
 
 import java.io.ByteArrayOutputStream;

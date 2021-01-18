@@ -24,10 +24,25 @@
 
 package com.phoenix.common.mfa;
 
+import com.phoenix.common.mfa.data.HashingAlgorithm;
+import com.phoenix.common.mfa.data.MfaDataFactory;
+import com.phoenix.common.mfa.data.MfaType;
+import com.phoenix.common.mfa.data.TotpData;
+import com.phoenix.common.mfa.generator.CodeGenerator;
+import com.phoenix.common.mfa.generator.DefaultCodeGenerator;
+import com.phoenix.common.mfa.generator.QrGenerator;
+import com.phoenix.common.mfa.generator.ZxingPngQrGenerator;
+import com.phoenix.common.mfa.verifier.CodeVerifier;
+import com.phoenix.common.mfa.verifier.DefaultCodeVerifier;
 import com.phoenix.common.util.Base32;
+import com.phoenix.common.util.SystemTimeProvider;
+import com.phoenix.common.util.TimeProvider;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 public class TestMfa {
     @Test
@@ -47,7 +62,8 @@ public class TestMfa {
         byte[] bytes = new byte[(32 * 5) / 8];
         secureRandom.nextBytes(bytes);
 
-        String key = Base32.encode(bytes);
+        //String key = Base32.encode(bytes);
+        String key = "RDH3FYK3YBLGD5YVPOZVDWB5P5ZAATL2";
 
         System.out.println(key);
 
@@ -62,5 +78,19 @@ public class TestMfa {
         String dataUri = MfaUtils.getDataUriForImage(imageData, mimeType);
 
         System.out.println(dataUri);
+    }
+
+    @Test
+    public void testVerify() {
+        TimeProvider timeProvider = new SystemTimeProvider();
+        CodeGenerator codeGenerator = new DefaultCodeGenerator();
+        CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
+
+        String code = "641914";
+        String key = "RDH3FYK3YBLGD5YVPOZVDWB5P5ZAATL2";
+
+        boolean b = verifier.isValidCode(key, code);
+
+        System.out.println(b);
     }
 }

@@ -20,25 +20,16 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
  */
 
-package com.phoenix.common.mfa;
+package com.phoenix.common.mfa.verifier;
 
-public class MfaDataFactory {
-    private MfaDataFactory() {
-    }
-
-    public static final MfaData getMfaData(MfaType type, String label, String secret, String issuer, HashingAlgorithm algorithm, int digits, int number) {
-        switch (type) {
-
-            case TOTP:
-                return new TotpData(label, secret, issuer, algorithm,digits,number);
-
-            case HOTP:
-                return new HotpData(label, secret, issuer, algorithm,digits,number);
-
-            default:
-                throw new IllegalArgumentException("This type is unsupported");
-        }
-    }
+public interface CodeVerifier {
+    /**
+     * @param secret The shared secret/key to check the code against.
+     * @param code The n-digit code given by the end user to check.
+     * @return If the code is valid or not.
+     */
+    boolean isValidCode(String secret, String code);
 }

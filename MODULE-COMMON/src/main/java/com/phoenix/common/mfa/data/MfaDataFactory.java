@@ -20,22 +20,26 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
  */
 
-package com.phoenix.common.mfa;
+package com.phoenix.common.mfa.data;
 
-import com.phoenix.common.exception.runtime.QrGenerationException;
+public class MfaDataFactory {
+    private MfaDataFactory() {
+    }
 
-public interface QrGenerator {
-    /**
-     * @return The mime type of the image that the generator generates, e.g. image/png
-     */
-    String getImageMimeType();
+    public static final MfaData getMfaData(MfaType type, String label, String secret, String issuer, HashingAlgorithm algorithm, int digits, int number) {
+        switch (type) {
 
-    /**
-     * @param data The QrData object to encode in the generated image.
-     * @return The raw image data as a byte array.
-     * @throws QrGenerationException thrown if image generation fails for any reason.
-     */
-    byte[] generate(MfaData data) throws QrGenerationException;
+            case TOTP:
+                return new TotpData(label, secret, issuer, algorithm,digits,number);
+
+            case HOTP:
+                return new HotpData(label, secret, issuer, algorithm,digits,number);
+
+            default:
+                throw new IllegalArgumentException("This type is unsupported");
+        }
+    }
 }

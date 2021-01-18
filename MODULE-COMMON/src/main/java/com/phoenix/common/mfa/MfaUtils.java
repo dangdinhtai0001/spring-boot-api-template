@@ -25,6 +25,9 @@
 package com.phoenix.common.mfa;
 
 
+import com.phoenix.common.mfa.data.HotpData;
+import com.phoenix.common.mfa.data.MfaData;
+import com.phoenix.common.mfa.data.TotpData;
 import org.apache.commons.net.util.Base64;
 
 import javax.imageio.ImageIO;

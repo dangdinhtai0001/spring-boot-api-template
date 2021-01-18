@@ -20,32 +20,34 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
  */
 
-package com.phoenix.common.mfa;
+package com.phoenix.common.mfa.data;
 
-public class TotpData extends MfaData{
-    private String type = "totp";
-    private int period;
+public class HotpData extends MfaData{
+    private String type = "hotp";
+    private int counter;
 
-
-    public TotpData() {
+    public HotpData() {
     }
 
-    public TotpData(String label, String secret, String issuer, HashingAlgorithm algorithm, int digits, int period) {
+    public HotpData(String label, String secret, String issuer, HashingAlgorithm algorithm, int digits, int counter) {
         super(label, secret, issuer, algorithm, digits);
-        this.period = period;
+        this.counter = counter;
     }
 
     public String getType() {
         return type;
     }
 
-    public int getPeriod() {
-        return period;
+    public int getCounter() {
+        return counter;
     }
 
-    public void setPeriod(int period) {
-        this.period = period;
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
+
+
 }
