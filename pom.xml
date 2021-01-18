@@ -22,6 +22,8 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <jacoco.skip>false</jacoco.skip>
     </properties>
 
     <build>
@@ -31,15 +33,21 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.7.201606060606</version>
+                    <configuration>
+                        <skip>${jacoco.skip}</skip>
+                        <output>file</output>
+                        <append>true</append>
+                    </configuration>
                     <executions>
                         <execution>
+                            <id>jacoco-initialize</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
                         <execution>
-                            <id>report</id>
-                            <phase>prepare-package</phase>
+                            <id>jacoco-site</id>
+                            <phase>verify</phase>
                             <goals>
                                 <goal>report</goal>
                             </goals>
