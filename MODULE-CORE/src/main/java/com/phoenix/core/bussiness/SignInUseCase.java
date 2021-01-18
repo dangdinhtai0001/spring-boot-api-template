@@ -25,10 +25,10 @@
 package com.phoenix.core.bussiness;
 
 import com.phoenix.common.exception.runtime.UserValidationException;
-import com.phoenix.common.jsonwebtoken.Scope;
-import com.phoenix.common.jsonwebtoken.TokenProvider;
-import com.phoenix.common.jsonwebtoken.component.Claims;
-import com.phoenix.common.jsonwebtoken.component.DefaultClaims;
+import com.phoenix.common.security.Scope;
+import com.phoenix.common.security.TokenProvider;
+import com.phoenix.common.security.component.Claims;
+import com.phoenix.common.security.component.DefaultClaims;
 import com.phoenix.common.lang.Strings;
 import com.phoenix.common.util.IdGenerator;
 import com.phoenix.core.port.repositories.UserRepositoryPort;

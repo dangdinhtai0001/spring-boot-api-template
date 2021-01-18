@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <org.apache.logging.log4j.log4j-core.version>2.14.0</org.apache.logging.log4j.log4j-core.version>
+        <log4j.log4j.version>1.2.17</log4j.log4j.version>
         <org.projectlombok.lombok.version>1.18.16</org.projectlombok.lombok.version>
     </properties>
 
@@ -28,12 +28,11 @@
             <version>0.0.0</version>
         </dependency>
         <!--========= module =========-->
-
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.log4j.version}</version>
         </dependency>
 
 
@@ -44,7 +43,6 @@
             <version>${org.projectlombok.lombok.version}</version>
             <scope>provided</scope>
         </dependency>
-
 
 
         <dependency>
@@ -82,6 +80,29 @@
     </dependencies>
 
     <build>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.7.201606060606</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

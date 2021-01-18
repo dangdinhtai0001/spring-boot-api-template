@@ -25,8 +25,8 @@
 
 package com.phoenix.common.exception.runtime;
 
-import com.phoenix.common.jsonwebtoken.component.Claims;
-import com.phoenix.common.jsonwebtoken.component.Header;
+import com.phoenix.common.security.component.Claims;
+import com.phoenix.common.security.component.Header;
 
 /**
  * ClaimJwtException is a subclass of the {@link JwtException} that is thrown after a validation of an JTW claim failed.

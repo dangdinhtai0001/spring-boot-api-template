@@ -24,6 +24,7 @@
 
 package com.phoenix.common.crypto;
 
+import com.phoenix.common.security.crypto.BCryptPasswordEncoder;
 import org.junit.Test;
 
 public class testBCrypt {

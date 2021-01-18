@@ -25,6 +25,8 @@
 
 package com.phoenix.core;
 
-public interface UseCase<T> {
+public interface UseCase<T, E> {
+    public T process(E e);
 
+    public void validate(E e);
 }

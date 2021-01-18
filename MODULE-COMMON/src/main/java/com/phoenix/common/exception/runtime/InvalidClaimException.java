@@ -25,8 +25,8 @@
 
 package com.phoenix.common.exception.runtime;
 
-import com.phoenix.common.jsonwebtoken.component.Claims;
-import com.phoenix.common.jsonwebtoken.component.Header;
+import com.phoenix.common.security.component.Claims;
+import com.phoenix.common.security.component.Header;
 
 /**
  * Exception indicating a parsed claim is invalid in some way.  Subclasses reflect the specific
