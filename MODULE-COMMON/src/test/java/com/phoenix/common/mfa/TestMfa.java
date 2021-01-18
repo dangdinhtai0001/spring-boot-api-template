@@ -86,7 +86,7 @@ public class TestMfa {
         CodeGenerator codeGenerator = new DefaultCodeGenerator();
         CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
 
-        String code = "641914";
+        String code = "685359";
         String key = "RDH3FYK3YBLGD5YVPOZVDWB5P5ZAATL2";
 
         boolean b = verifier.isValidCode(key, code);
