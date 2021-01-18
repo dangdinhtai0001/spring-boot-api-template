@@ -8,6 +8,9 @@ dist: xenial
 # This enables the 'defaults' to test java applications:
 language: java
 
+branches:
+  only:
+    - dev
 # We can specify a list of JDKs to be used for testing
 # A list of available JDKs in Trusty can be seed in:
 # https://docs.travis-ci.com/user/reference/xenial/#jvm-clojure-groovy-java-scala-support
