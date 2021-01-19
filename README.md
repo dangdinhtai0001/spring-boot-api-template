@@ -30,6 +30,32 @@
 *	[Dependabot](https://dependabot.com/) - Automated dependency updates.
 *	[FOSSA](https://fossa.com/) - Scalable, end-to-end management for third-party code, license compliance and vulnerabilities.
 * 	[gitignore.io](https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij) - Create useful .gitignore files for your project.
+
+## Features and To-Do
+
+* 	[x] Logger (Console, File)
+* 	[x] [Spring Security](https://spring.io/projects/spring-security)
+* 	[ ] API [Rate Limiting](https://en.wikipedia.org/wiki/Rate_limiting)
+* 	[x] [JPA Auditing via AuditorAware Interface](https://docs.spring.io/spring-data/jpa/docs/1.7.0.DATAJPA-580-SNAPSHOT/reference/html/auditing.html)
+* 	[ ] [Spring Profiles](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-profiles) (dev, production, qa, staging, test)
+* 	[ ] [Caching](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/boot-features-caching.html)
+* 	[ ] [HATEOS (Hypermedia as the Engine of Application State)](https://en.wikipedia.org/wiki/HATEOAS)
+* 	[ ] Software documentation - [Swagger](https://swagger.io/), [Javadoc](https://en.wikipedia.org/wiki/Javadoc), [Postman Collection](https://www.postman.com/collection/)
+* 	[ ] [HTTPS](https://en.wikipedia.org/wiki/HTTPS) with (self-signed certificate)[https://en.wikipedia.org/wiki/Self-signed_certificate]
+* 	[x] [JSON Web Token](https://www.jsonwebtoken.io/) based authentication
+* 	[ ] Quartz Scheduler
+* 	[ ] Replace Docker with [jib](https://github.com/GoogleContainerTools/jib)
+* 	[ ] [Docker](https://www.docker.com/)
+*  [ ] Unit Tests, Integration Tests
+* 	[ ] Shut down app on button click via actuator url 
+* 	[ ] Spring Boot Admin
+* 	[ ] NoSQL (MongoDB)
+* 	[ ] Multitenancy
+* 	[ ] Micrometer
+* 	[ ] Grafna
+* 	[ ] Spring Retry
+
+## Getting Started
 ---
 
 This project uses source code from 
