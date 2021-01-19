@@ -24,6 +24,7 @@
         <commons-net.commons-net.version>3.7.2</commons-net.commons-net.version>
         <com.google.zxing.core.version>3.4.1</com.google.zxing.core.version>
 
+        <jacoco.skip>false</jacoco.skip>
     </properties>
 
     <dependencies>
@@ -125,15 +126,21 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.7.201606060606</version>
+                    <configuration>
+                        <skip>${jacoco.skip}</skip>
+                        <output>file</output>
+                        <append>true</append>
+                    </configuration>
                     <executions>
                         <execution>
+                            <id>jacoco-initialize</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
                         <execution>
-                            <id>report</id>
-                            <phase>prepare-package</phase>
+                            <id>jacoco-site</id>
+                            <phase>verify</phase>
                             <goals>
                                 <goal>report</goal>
                             </goals>
