@@ -53,7 +53,7 @@
 *	[FOSSA](https://fossa.com/) - Scalable, end-to-end management for third-party code, license compliance and vulnerabilities.
 *	[sonarcloud](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template) - Cloud-based code analysis service designed to detect code quality issues continuously ensuring the maintainability, reliability and security of code.
 * [gitignore.io](https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij) - Create useful .gitignore files for your project.
-* [Github sheild](https://shields.io/)
+* [Github sheild](https://shields.io/) - A service for concise, consistent, and legible badges in SVG and raster format, which can easily be included in GitHub readmes
 
 ## Features and To-Do
 
