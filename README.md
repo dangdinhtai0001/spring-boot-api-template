@@ -1,8 +1,12 @@
-# spring-boot-api-template [![Build Status](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template.svg?branch=dangdinhtai)](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template)
+# spring-boot-api-template 
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/dangdinhtai0001/spring-boot-api-template/tree/dangdinhtai)
+
+[![Build Status](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template.svg?branch=dangdinhtai)](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template)
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdangdinhtai0001%2Fspring-boot-api-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdangdinhtai0001%2Fspring-boot-api-template?ref=badge_shield)
 [![codecov](https://codecov.io/gh/dangdinhtai0001/spring-boot-api-template/branch/dangdinhtai/graph/badge.svg?token=G9KEPDJSFQ)](https://codecov.io/gh/dangdinhtai0001/spring-boot-api-template)
+
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=bugs)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=code_smells)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
@@ -11,6 +15,16 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=security_rating)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=sqale_index)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
+
+![GitHub language count](https://img.shields.io/github/languages/count/dangdinhtai0001/spring-boot-api-template)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dangdinhtai0001/spring-boot-api-template)
+![GitHub repo file count](https://img.shields.io/github/directory-file-count/dangdinhtai0001/spring-boot-api-template)
+![GitHub repo size](https://img.shields.io/github/repo-size/dangdinhtai0001/spring-boot-api-template)
+
+![GitHub followers](https://img.shields.io/github/followers/dangdinhtai0001?style=social)
+![GitHub forks](https://img.shields.io/github/forks/dangdinhtai0001/spring-boot-api-template?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/dangdinhtai0001/spring-boot-api-template?style=social)
+
 
 ## Table of Contents
 
@@ -38,7 +52,8 @@
 *	[Dependabot](https://dependabot.com/) - Automated dependency updates.
 *	[FOSSA](https://fossa.com/) - Scalable, end-to-end management for third-party code, license compliance and vulnerabilities.
 *	[sonarcloud](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template) - Cloud-based code analysis service designed to detect code quality issues continuously ensuring the maintainability, reliability and security of code.
-* 	[gitignore.io](https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij) - Create useful .gitignore files for your project.
+* [gitignore.io](https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij) - Create useful .gitignore files for your project.
+* [Github sheild](https://shields.io/)
 
 ## Features and To-Do
 
