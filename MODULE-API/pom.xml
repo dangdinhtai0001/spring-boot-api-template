@@ -87,8 +87,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.7.7.201606060606</version>
-                    <configuration>
+                        <version>0.8.6</version>
                         <skip>${jacoco.skip}</skip>
                         <output>file</output>
                         <append>true</append>
