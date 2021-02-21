@@ -36,7 +36,7 @@ import org.apache.log4j.Logger;
  * @version 2.3.7
  */
 public class Base64 {
-    private static Logger logger = Logger.getLogger(Base64.class);
+    private static final Logger logger = Logger.getLogger(Base64.class);
 
     /* ********  P U B L I C   F I E L D S  ******** */
 
@@ -319,7 +319,7 @@ public class Base64 {
      * in which case one of them will be picked, though there is
      * no guarantee as to which one will be picked.
      */
-    private final static byte[] getAlphabet(int options) {
+    private static byte[] getAlphabet(int options) {
         if ((options & URL_SAFE) == URL_SAFE) {
             return _URL_SAFE_ALPHABET;
         } else if ((options & ORDERED) == ORDERED) {
@@ -337,7 +337,7 @@ public class Base64 {
      * in which case one of them will be picked, though there is
      * no guarantee as to which one will be picked.
      */
-    private final static byte[] getDecodabet(int options) {
+    private static byte[] getDecodabet(int options) {
         if ((options & URL_SAFE) == URL_SAFE) {
             return _URL_SAFE_DECODABET;
         } else if ((options & ORDERED) == ORDERED) {
