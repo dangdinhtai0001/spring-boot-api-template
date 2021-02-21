@@ -24,6 +24,7 @@
 
 package com.phoenix.infrastructure.config;
 
+import com.phoenix.infrastructure.constant.DataSourceConstant;
 import com.phoenix.infrastructure.entities.AuditorAwareImpl;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -58,8 +59,14 @@ import java.util.Properties;
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class PrimaryPersistenceConfig {
 
-    private static final String HIKARICP_CONFIG_FILE = "primary-hikaricp.properties";
-    private static final String JPA_CONFIG_FILE = "primary-jpa.properties";
+//    private static final String HIKARICP_CONFIG_FILE = "primary-hikaricp.properties";
+//    private static final String JPA_CONFIG_FILE = "primary-jpa.properties";
+//    private static final String[] PACKAGES_TO_SCAN = {"com.phoenix.*"};
+
+    private static final String PERSISTENCE_NAME = "primary";
+
+    private static final String HIKARICP_CONFIG_FILE = PERSISTENCE_NAME+ DataSourceConstant.HIKARICP_CONFIG_FILE_POSTFIX;
+    private static final String JPA_CONFIG_FILE= PERSISTENCE_NAME + DataSourceConstant.JPA_CONFIG_FILE_POSTFIX;
     private static final String[] PACKAGES_TO_SCAN = {"com.phoenix.*"};
 
     public PrimaryPersistenceConfig() throws IOException {
