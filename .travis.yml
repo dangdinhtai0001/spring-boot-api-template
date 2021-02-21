@@ -29,11 +29,11 @@ install:
 # In our case it will be 'mvn install' followed by 'mvn test'
 
 # https://github.com/codecov/example-java-maven
-script: "mvn jacoco:report"
+script: "mvn install"
 
 # This is to enable CodeCov's coverage
 # If a build is successful, the code is submitted for coverage analysis
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -f coverage-report/target/site/jacoco-aggregate/jacoco.xml
 
 

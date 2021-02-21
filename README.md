@@ -4,8 +4,8 @@
 
 [![Build Status](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template.svg?branch=dangdinhtai)](https://travis-ci.org/dangdinhtai0001/spring-boot-api-template)
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdangdinhtai0001%2Fspring-boot-api-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdangdinhtai0001%2Fspring-boot-api-template?ref=badge_shield)
 [![codecov](https://codecov.io/gh/dangdinhtai0001/spring-boot-api-template/branch/dangdinhtai/graph/badge.svg?token=G9KEPDJSFQ)](https://codecov.io/gh/dangdinhtai0001/spring-boot-api-template)
+[![BCH compliance](https://bettercodehub.com/edge/badge/dangdinhtai0001/spring-boot-api-template?branch=master)](https://bettercodehub.com/)
 
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=bugs)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
@@ -15,6 +15,8 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=security_rating)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=sqale_index)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=dangdinhtai0001_spring-boot-api-template&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=dangdinhtai0001_spring-boot-api-template)
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdangdinhtai0001%2Fspring-boot-api-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdangdinhtai0001%2Fspring-boot-api-template?ref=badge_shield)
 
 ![GitHub language count](https://img.shields.io/github/languages/count/dangdinhtai0001/spring-boot-api-template)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dangdinhtai0001/spring-boot-api-template)
