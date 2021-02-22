@@ -20,7 +20,7 @@
         <org.springframework.data.spring-data-jpa.version>2.4.2</org.springframework.data.spring-data-jpa.version>
         <com.zaxxer.HikariCP.version>3.4.5</com.zaxxer.HikariCP.version>
         <mysql.mysql-connector-java.version>8.0.22</mysql.mysql-connector-java.version>
-        <org.projectlombok.lombok.version>1.18.16</org.projectlombok.lombok.version>
+        <org.projectlombok.lombok.version>1.18.18</org.projectlombok.lombok.version>
         <org.springframework.spring-aspects.version>5.3.3</org.springframework.spring-aspects.version>
         <org.eclipse.persistence.javax.persistence.version>2.2.1</org.eclipse.persistence.javax.persistence.version>
         <org.hibernate.javax.persistence.hibernate-jpa-2.1-api.version>1.0.2.Final
