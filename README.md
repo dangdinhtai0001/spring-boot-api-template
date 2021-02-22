@@ -84,13 +84,55 @@
 ## Getting Started
 ---
 
-### dependencies of modules
-
+### Use case
 There are 3 main use cases:
  - Log in with your password (permit all)
  - Sign in with google authenticator's otp code (permit all)
  - Create a QR code for google authenticator app (permit all)
  - Create account (Admin role / create_user_permission)
+ - Retrieve password via email
+
+### Database schema
+ - USER
+
+|No| Field| type| reqired| auto generated| primary key| foreign key| description|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+|1| id ||x||||
+|2| username |x|||||
+|3| email |x||||
+|4| password |x||||
+
+
+ - ROLE
+ 
+|No| Field| type| reqired| auto generated| primary key| foreign key| description|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+|1| id ||x|||
+|1| name |x||||
+
+ - PERMISSION
+
+|No| Field| type| reqired| auto generated| primary key| foreign key| description|
+| :---: | :---: | :---: | :---: | :---: | :---: |
+|1| id ||x|||
+|1| name |x||||
+
+ - USER_ROLE
+
+|No| Field| type| reqired| auto generated| primary key| foreign key| description|
+| :---: | :---: | :---: | :---: | :---: | :---: |
+|1| user_id ||x|||
+|1| role_id |x||||
+
+ - ROLE_PERMISSION
+
+|No| Field| type| reqired| auto generated| primary key| foreign key| description|
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+|1| role_id |x||||
+|1| permission_id |x||||
+
+
+### dependencies of modules
 
 |Name|Module-adapter| Module-api| Module-common| Module-config| Module-core| Module-domain| Module-infrastructure|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
