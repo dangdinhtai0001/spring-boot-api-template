@@ -86,6 +86,12 @@
 
 ### dependencies of modules
 
+There are 3 main use cases:
+Log in with your password (permit all)
+Sign in with google authenticator's otp code (permit all)
+Create a QR code for google authenticator app (permit all)
+Create account (Admin role / create_user_permission)
+
 |Name|Module-adapter| Module-api| Module-common| Module-config| Module-core| Module-domain| Module-infrastructure|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Module-adapter|_|_|_|x|_|_|_|
