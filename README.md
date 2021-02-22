@@ -113,14 +113,14 @@ There are 3 main use cases:
  - PERMISSION
 
 |No| Field| type| reqired| auto generated| primary key| foreign key| description|
-| :---: | :---: | :---: | :---: | :---: | :---: |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 |1| id ||x|||
 |1| name |x||||
 
  - USER_ROLE
 
 |No| Field| type| reqired| auto generated| primary key| foreign key| description|
-| :---: | :---: | :---: | :---: | :---: | :---: |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 |1| user_id ||x|||
 |1| role_id |x||||
 
