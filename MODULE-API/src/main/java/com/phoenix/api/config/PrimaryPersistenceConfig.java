@@ -14,6 +14,28 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.io.IOException;
 
+/**
+ * basePackages: we use this field to set the base package of our repository. For instance, for the primary data source,
+ * It must point to the package com.phoenix.infrastructure.repositories
+ *
+ * entityManagerFactoryRef: We use this field to reference the entity manager factory bean defined in the data source
+ * configuration file. It is important to take note of the fact that the entityManagerFactoryRef value must match the
+ * bean name (if specified via the name field of the @Bean annotation else will default to method name) of the entity
+ * manager factory defined in the configuration file.
+ *
+ * transactionManagerRef: This field references the transaction manager defined in the data source configuration file.
+ * Again it is important to ensure that the transactionManagerRef  value matches with the bean name of the transaction
+ * manager factory.
+ *
+ * Important Points to note: ===============
+ *
+ * entity manager factory bean: Please make sure that you are referencing the correct data source when creating the
+ * entity manager factory bean otherwise you will get unexpected results.
+ *
+ * transaction manager bean: To ensure that you have provided the correct entity manager factory reference for the
+ * transaction manager, you may use the @Qualifier annotation.
+ *
+ */
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.phoenix.infrastructure.repositories.*"},
         entityManagerFactoryRef = "PrimaryEntityManagerFactory",

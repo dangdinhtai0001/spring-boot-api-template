@@ -37,6 +37,8 @@ import com.phoenix.core.bussiness.SignUpUseCase;
 import com.phoenix.common.security.KeyProvider;
 import com.phoenix.core.port.repositories.UserRepositoryPort;
 import com.phoenix.core.port.security.PasswordEncoderPort;
+import com.phoenix.infrastructure.config.PrimaryPersistenceConfig;
+import com.phoenix.infrastructure.integration.PersistenceConfig;
 import com.phoenix.infrastructure.repositories.UserRepositoryImp;
 import com.phoenix.infrastructure.repositories.primary.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;

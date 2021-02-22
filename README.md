@@ -84,6 +84,20 @@
 ## Getting Started
 ---
 
+### dependencies of modules
+
+|Name|Module-adapter| Module-api| Module-common| Module-config| Module-core| Module-domain| Module-infrastructure|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Module-adapter|_|_|_|x|_|_|_|
+| Module-api|_|_|_|_|_|_|_|_|
+| Module-common|_|_|_|_|x|_|_| 
+| Module-config|_|x|_|_|_|_|_| 
+| Module-core|x|_|_|x|_|_| _|
+| Module-domain|x|_|_|_|x|_|x| 
+| Module-infrastructure|x|_|_|_|_|_|_|
+
+## Reference
+---
 This project uses source code from 
  - https://github.com/jwtk/jjwt.git, Copyright (C) 2014 jsonwebtoken.io
  - https://github.com/keycloak/keycloak.git
