@@ -4,6 +4,7 @@ import com.phoenix.infrastructure.config.FlywayConfig;
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.io.IOException;
 
@@ -20,12 +21,15 @@ public class FlywayConfiguration {
 
     @Bean(name = "InitializePrimaryFlyway")
     public Flyway flyway() throws IOException {
-       return flywayConfig.initializeFlyway("primary");
+        return flywayConfig.initializeFlyway("primary");
     }
 
     @Bean(name = "InitializePrimaryFlywayMigrate")
+    @DependsOn("InitializePrimaryFlyway")
     public void migrateFlyway() throws IOException {
-        this.flywayConfig.migrate(this.flyway());
+        if (this.flywayConfig.isMigrate()) {
+            this.flywayConfig.migrate(this.flyway());
+        }
     }
 
 }

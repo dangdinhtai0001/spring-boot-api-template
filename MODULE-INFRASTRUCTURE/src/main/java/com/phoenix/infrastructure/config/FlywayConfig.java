@@ -1,6 +1,7 @@
 package com.phoenix.infrastructure.config;
 
 import com.phoenix.infrastructure.constant.DataSourceConstant;
+import lombok.Getter;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;
 import org.flywaydb.core.api.exception.FlywayValidateException;
@@ -10,28 +11,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+@Getter
 public class FlywayConfig {
-//    private final String CONFIG_FILE = "-flyway.properties";
+    private boolean migrate ;
 
     public FlywayConfig() {
-    }
-
-    /**
-     * @param name : datasource's type name like: primary, secondary,...
-     * @return
-     * @throws IOException
-     */
-    @Deprecated
-    private Properties getProperties(String name) throws IOException {
-        String configFileName = name + DataSourceConstant.FLYWAY_CONFIG_FILE_POSTFIX;
-        ClassLoader classLoader = getClass().getClassLoader();
-        File configFile = new File(classLoader.getResource(configFileName).getFile());
-        FileInputStream fileInputStream = new FileInputStream(configFile);
-
-        Properties properties = new Properties();
-        properties.load(fileInputStream);
-
-        return properties;
     }
 
     /**
@@ -66,6 +50,8 @@ public class FlywayConfig {
                 .sqlMigrationPrefix(properties.getProperty("sqlMigrationPrefix"))
                 .sqlMigrationSeparator(properties.getProperty("sqlMigrationSeparator"))
                 .validateOnMigrate(Boolean.parseBoolean(properties.getProperty("validateOnMigrate")));
+
+        this.migrate =Boolean.parseBoolean(properties.getProperty("migrate"));
 
         return configuration;
     }

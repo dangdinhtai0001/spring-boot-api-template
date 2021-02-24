@@ -24,7 +24,7 @@
 
 package com.phoenix.infrastructure.repositories.primary;
 
-import com.phoenix.infrastructure.entities.primary.RoleEntity;
+import com.phoenix.domain.persistence.primary.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

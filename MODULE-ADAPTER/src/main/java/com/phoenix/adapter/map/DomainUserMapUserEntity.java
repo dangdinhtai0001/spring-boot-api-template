@@ -25,7 +25,7 @@
 package com.phoenix.adapter.map;
 
 import com.phoenix.domain.entity.User;
-import com.phoenix.infrastructure.entities.primary.UserEntity;
+import com.phoenix.domain.persistence.primary.UserEntity;
 
 public class DomainUserMapUserEntity implements Mapper<User, UserEntity> {
     @Override
@@ -35,8 +35,6 @@ public class DomainUserMapUserEntity implements Mapper<User, UserEntity> {
         userEntity.setEmail(user.getEmail());
         userEntity.setPassword(user.getPassword());
         userEntity.setUsername(user.getUsername());
-        userEntity.setFirstName(user.getFirstName());
-        userEntity.setLastName(user.getLastName());
 
         return userEntity;
     }

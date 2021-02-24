@@ -24,8 +24,8 @@
 
 package com.phoenix.infrastructure.config;
 
+import com.phoenix.domain.persistence.AuditorAwareImpl;
 import com.phoenix.infrastructure.constant.DataSourceConstant;
-import com.phoenix.infrastructure.entities.AuditorAwareImpl;
 import com.phoenix.infrastructure.integration.PersistenceConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
