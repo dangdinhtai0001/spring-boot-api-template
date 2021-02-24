@@ -30,6 +30,12 @@ public class UserEntity {
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name ="LOCKED")
+    private boolean locked;
+
+    @Column(name ="ENABLED")
+    private boolean enabled;
+
 
     /**
      *  * name: Tên của joinTable (USER_ROLE),
@@ -39,8 +45,8 @@ public class UserEntity {
     @ManyToMany
     @JoinTable(
             name = "USER_ROLE",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
+            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
     )
     private List<RoleEntity> roles;
 
