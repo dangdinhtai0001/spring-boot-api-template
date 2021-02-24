@@ -24,13 +24,12 @@
 
 package com.phoenix.api.config;
 
-import com.phoenix.adapter.controller.AuthControllerAdapter;
 import com.phoenix.adapter.security.AuthenticationManagerAdapter;
 import com.phoenix.common.security.KeyProvider;
 import com.phoenix.common.security.TokenProvider;
 import com.phoenix.config.SpringConfiguration;
-import com.phoenix.infrastructure.repositories.UserRepositoryImp;
 import com.phoenix.infrastructure.repositories.primary.UserRepository;
+import com.phoenix.infrastructure.repositories.primary.UserRepositoryImp;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,15 +52,8 @@ public class ApplicationConfig {
         File file = new ClassPathResource(ApplicationConstant.KEY_FILE).getFile();
 
         configuration = new SpringConfiguration(
-                userRepository,
-                userRepositoryImp,
                 authenticationManager,
                 file);
-    }
-
-    @Bean(value = "AuthControllerAdapterBean")
-    public AuthControllerAdapter authControllerAdapter() {
-        return configuration.authControllerAdapter();
     }
 
     @Bean(value = "KeyProvider")

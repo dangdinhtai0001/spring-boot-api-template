@@ -24,7 +24,7 @@
 
 package com.phoenix.api.security;
 
-import com.phoenix.domain.entity.User;
+import com.phoenix.domain.entity.DomainUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,17 +35,17 @@ import java.util.Set;
 
 public class DefaultUserDetails implements UserDetails {
 
-    private User user; //Domain user
+    private DomainUser domainUser; //Domain domainUser
 
-    public DefaultUserDetails(User user) {
-        this.user = user;
+    public DefaultUserDetails(DomainUser domainUser) {
+        this.domainUser = domainUser;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
 
-        for (String role : user.getRoles()) {
+        for (String role : domainUser.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role));//NOPMD
         }
         return authorities;
@@ -53,12 +53,12 @@ public class DefaultUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return domainUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return domainUser.getUsername();
     }
 
     @Override

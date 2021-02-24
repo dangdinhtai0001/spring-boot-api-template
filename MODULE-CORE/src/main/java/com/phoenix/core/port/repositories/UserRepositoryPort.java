@@ -25,19 +25,19 @@
 package com.phoenix.core.port.repositories;
 
 
-import com.phoenix.domain.entity.User;
+import com.phoenix.domain.entity.DomainUser;
 
 import java.util.Optional;
 
 public interface UserRepositoryPort {
 
     /**
-     * Save User to database, just insert to user table (without user_role table)
+     * Save DomainUser to database, just insert to domainUser table (without user_role table)
      *
-     * @param user :
+     * @param domainUser :
      * @return Optional of UserDB
      */
-    public Optional save(User user);
+    public Optional save(DomainUser domainUser);
 
 
     /**
@@ -56,15 +56,15 @@ public interface UserRepositoryPort {
 
     /**
      * @param email:
-     * @return Optional of Domain User
+     * @return Optional of Domain DomainUser
      */
-    public Optional<User> findUserByEmailOrUsername(String email);
+    public Optional<DomainUser> findUserByEmailOrUsername(String email);
 
 
     /**
-     * create a new user. insert to 2 table: user + user_role
-     * @param user:
+     * create a new domainUser. insert to 2 table: domainUser + user_role
+     * @param domainUser:
      * @return
      */
-    public Optional<User> createUser(User user);
+    public Optional<DomainUser> createUser(DomainUser domainUser);
 }

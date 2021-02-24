@@ -24,22 +24,14 @@
 
 package com.phoenix.config;
 
-import com.phoenix.adapter.controller.AuthControllerAdapter;
-import com.phoenix.adapter.map.DomainUserMapUserEntity;
 import com.phoenix.adapter.map.Mapper;
-import com.phoenix.adapter.repository.UserRepositoryAdapter;
 import com.phoenix.adapter.security.AuthenticationManagerAdapter;
 import com.phoenix.adapter.security.PasswordEncoderAdapter;
 import com.phoenix.common.security.DefaultTokenProvider;
 import com.phoenix.common.security.TokenProvider;
-import com.phoenix.core.bussiness.SignInUseCase;
-import com.phoenix.core.bussiness.SignUpUseCase;
 import com.phoenix.common.security.KeyProvider;
 import com.phoenix.core.port.repositories.UserRepositoryPort;
 import com.phoenix.core.port.security.PasswordEncoderPort;
-import com.phoenix.infrastructure.config.PrimaryPersistenceConfig;
-import com.phoenix.infrastructure.integration.PersistenceConfig;
-import com.phoenix.infrastructure.repositories.UserRepositoryImp;
 import com.phoenix.infrastructure.repositories.primary.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 
@@ -51,44 +43,29 @@ import java.io.IOException;
  * map các port và adapter lại với nhau tại đây.
  */
 public class SpringConfiguration {
-    private final UserRepositoryPort userRepositoryPort;
     private final PasswordEncoderPort passwordEncoderPort;
     private final KeyProvider keyProvider;
     private final AuthenticationManagerAdapter authenticationManager;
 
 
-    public SpringConfiguration(UserRepository userRepository,
-                               UserRepositoryImp userRepositoryImp,
-                               AuthenticationManager authenticationManager,
+    public SpringConfiguration(AuthenticationManager authenticationManager,
                                File keyFile
     ) throws IOException, ClassNotFoundException {
         this.passwordEncoderPort = new PasswordEncoderAdapter();
         this.keyProvider = new KeyProvider(keyFile);
 
         this.authenticationManager = new AuthenticationManagerAdapter(authenticationManager);
-        Mapper domainUserMapUserEntity = new DomainUserMapUserEntity();
-        this.userRepositoryPort = new UserRepositoryAdapter(domainUserMapUserEntity, userRepository, userRepositoryImp);
     }
 
     //=======================================================
     //                   CONTROLLER
     //=======================================================
 
-    public AuthControllerAdapter authControllerAdapter() {
-        return new AuthControllerAdapter(this.signUpUseCase(), this.signInUseCase());
-    }
 
     //=======================================================
     //                   USE CASE
     //=======================================================
 
-    public SignUpUseCase signUpUseCase() {
-        return new SignUpUseCase(this.userRepositoryPort, this.passwordEncoderPort);
-    }
-
-    public SignInUseCase signInUseCase() {
-        return new SignInUseCase(this.authenticationManager, this.createTokenProvider(), this.userRepositoryPort);
-    }
 
     //=======================================================
     //                   DEPENDENCY

@@ -25,8 +25,8 @@
 package com.phoenix.api.service;
 
 import com.phoenix.api.security.DefaultUserDetails;
-import com.phoenix.domain.entity.User;
-import com.phoenix.infrastructure.repositories.UserRepositoryImp;
+import com.phoenix.domain.entity.DomainUser;
+import com.phoenix.infrastructure.repositories.primary.UserRepositoryImp;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -47,7 +47,7 @@ public class DefaultUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> optional = Optional.ofNullable(userRepositoryImp.findUserByEmailOrUsername(email));
+        Optional<DomainUser> optional = Optional.ofNullable(userRepositoryImp.findUserByEmailOrUsername(email));
         log.info("Fetched user by " + email);
 
         return optional.map(DefaultUserDetails::new)

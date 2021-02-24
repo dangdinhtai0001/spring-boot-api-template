@@ -20,13 +20,27 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
  */
 
-package com.phoenix.domain.enums;
+package com.phoenix.domain.entity;
 
-public enum Role {
-    ADMIN,
-    USER,
-    GUEST
+import lombok.*;
+
+import java.util.Set;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class DomainUser {
+    private long id;
+    private String username;
+    private String password;
+    private String isLocked;
+    private String isEnabled;
+    private String email;
+    private Set<String> roles;
+    private Set<String> permissions;
+
 }
