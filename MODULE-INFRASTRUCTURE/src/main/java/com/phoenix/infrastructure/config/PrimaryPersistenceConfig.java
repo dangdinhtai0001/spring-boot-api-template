@@ -41,6 +41,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Properties;
@@ -64,24 +65,10 @@ public class PrimaryPersistenceConfig implements PersistenceConfig {
 
     private static final String HIKARICP_CONFIG_FILE = PERSISTENCE_NAME + DataSourceConstant.HIKARICP_CONFIG_FILE_POSTFIX;
     private static final String JPA_CONFIG_FILE = PERSISTENCE_NAME + DataSourceConstant.JPA_CONFIG_FILE_POSTFIX;
-    private static final String[] PACKAGES_TO_SCAN = {"com.phoenix.*"};
+    private static final String[] PACKAGES_TO_SCAN = {"com.phoenix.domain.persistence.primary.**"};
 
-    public PrimaryPersistenceConfig() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File configFile = null;
+    public PrimaryPersistenceConfig() {
 
-        try {
-            configFile = new File(classLoader.getResource(JPA_CONFIG_FILE).getFile());
-        } catch (Exception e) {
-            configFile = new File(classLoader.getResource(DataSourceConstant.DEFAULT_FILE_PREFIX +
-                    DataSourceConstant.JPA_CONFIG_FILE_POSTFIX).getFile());
-        }
-
-        FileInputStream fileInputStream = new FileInputStream(configFile);
-
-        Properties jpaProperties = new Properties();
-
-        jpaProperties.load(fileInputStream);
     }
 
     public DataSource createDataSource() {
@@ -95,7 +82,8 @@ public class PrimaryPersistenceConfig implements PersistenceConfig {
         return new HikariDataSource(hikariConfig);
     }
 
-    public LocalContainerEntityManagerFactoryBean createLocalContainerEntityManagerFactory(DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean createLocalContainerEntityManagerFactory(DataSource dataSource) throws
+            IOException {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean
                 = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource);
@@ -112,12 +100,28 @@ public class PrimaryPersistenceConfig implements PersistenceConfig {
 
         HashMap<String, Object> properties = new HashMap<>();
 
+        ClassLoader classLoader = getClass().getClassLoader();
+        File configFile = null;
+
+        try {
+            configFile = new File(classLoader.getResource(JPA_CONFIG_FILE).getFile());
+        } catch (Exception e) {
+            configFile = new File(classLoader.getResource(DataSourceConstant.DEFAULT_FILE_PREFIX +
+                    DataSourceConstant.JPA_CONFIG_FILE_POSTFIX).getFile());
+        }
+
+        FileInputStream fileInputStream = new FileInputStream(configFile);
+
+        Properties jpaProperties = new Properties();
+
+        jpaProperties.load(fileInputStream);
+
         // JPA & Hibernate
-        properties.put("hibernate.dialect", properties.get("jpa.properties.hibernate.dialect"));
-        properties.put("hibernate.show.sql", properties.get("jpa.properties.hibernate.show-sql"));
-        properties.put("hibernate.hbm2ddl.auto", properties.get("jpa.properties.hibernate.ddl-auto"));
-        properties.put("jpa.properties.hibernate.format_sql", properties.get("jpa.properties.hibernate.format_sql"));
-        properties.put("logging.level.org.hibernate.SQL", properties.get("logging.level.org.hibernate.SQL"));
+        properties.put("hibernate.dialect", jpaProperties.get("jpa.properties.hibernate.dialect"));
+        properties.put("hibernate.show.sql", jpaProperties.get("jpa.properties.hibernate.show-sql"));
+        properties.put("hibernate.hbm2ddl.auto", jpaProperties.get("jpa.properties.hibernate.ddl-auto"));
+        properties.put("jpa.properties.hibernate.format_sql", jpaProperties.get("jpa.properties.hibernate.format_sql"));
+        properties.put("logging.level.org.hibernate.SQL", jpaProperties.get("logging.level.org.hibernate.SQL"));
 
         // Solved Error: PostGres createClob() is not yet implemented.
         // PostGres Only:
@@ -147,4 +151,5 @@ public class PrimaryPersistenceConfig implements PersistenceConfig {
     public AuditorAware<String> createAuditorAware() {
         return new AuditorAwareImpl();
     }
+
 }

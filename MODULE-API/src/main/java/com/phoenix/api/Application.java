@@ -9,9 +9,10 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 
 @SpringBootApplication(scanBasePackages = {
-        "com.phoenix.infrastructure.*",
+        "com.phoenix.infrastructure.**",
         "com.phoenix.config",
-        "com.phoenix.api.*"})
+        "com.phoenix.domain.**",
+        "com.phoenix.api.**"})
 public class Application {
 
     public static void main(String[] args) {
@@ -22,7 +23,7 @@ public class Application {
         ConfigurableApplicationContext context = builder.run(args);//NOPMD
 
 
-//        System.out.println();
+       // System.out.println();
     }
 
 }

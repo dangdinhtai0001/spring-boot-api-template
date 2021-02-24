@@ -56,23 +56,23 @@ public class PrimaryPersistenceConfig {
 
     @Primary
     @Bean(name = "PrimaryLocalContainerEntityManagerFactoryBean")
-    public LocalContainerEntityManagerFactoryBean LocalContainerEntityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean LocalContainerEntityManagerFactoryBean() throws IOException {
         return configuration.createLocalContainerEntityManagerFactory(this.DataSource());
     }
 
     @Bean(name = "PrimaryEntityManagerFactory")
-    public EntityManagerFactory EntityManagerFactory() {
+    public EntityManagerFactory EntityManagerFactory() throws IOException {
         return configuration.createEntityManagerFactory(this.LocalContainerEntityManagerFactoryBean());
     }
 
     @Primary
     @Bean(name = "PrimaryTransactionManager")
-    public PlatformTransactionManager TransactionManagerBean() {
+    public PlatformTransactionManager TransactionManagerBean() throws IOException {
         return configuration.createTransactionManagerBean(this.EntityManagerFactory());
     }
 
     @Bean(name = "PrimaryEntityManager")
-    public EntityManager EntityManager() {
+    public EntityManager EntityManager() throws IOException {
         return configuration.createEntityManager(this.EntityManagerFactory());
     }
 
