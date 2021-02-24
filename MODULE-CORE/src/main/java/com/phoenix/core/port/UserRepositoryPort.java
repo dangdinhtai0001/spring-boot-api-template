@@ -11,4 +11,6 @@ public interface UserRepositoryPort {
     public Optional<UserEntity> findByEmail(String email);
 
     public Optional<UserEntity> findByUsername(String username);
+
+    public Optional<DomainUser> findUserByEmailOrUsername(String username);
 }

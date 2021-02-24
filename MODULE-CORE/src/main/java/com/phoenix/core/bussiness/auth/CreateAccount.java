@@ -44,7 +44,7 @@ public class CreateAccount implements UseCase<DomainUser, String> {
     }
 
     @Override
-    public UseCaseResponse<String> execute(DomainUser domainUser) throws Exception {
+    public UseCaseResponse<String> execute(DomainUser domainUser) {
         try {
             //STEP-1. validate input
             validate(domainUser);

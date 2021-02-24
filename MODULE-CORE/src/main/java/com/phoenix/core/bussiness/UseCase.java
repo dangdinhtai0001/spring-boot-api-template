@@ -32,5 +32,5 @@ import com.phoenix.core.common.UseCaseResponse;
 public interface UseCase<T, E> {
      public void validate(T t);
 
-     public UseCaseResponse<E> execute(T t) throws Exception;
+     public UseCaseResponse<E> execute(T t) ;
 }
