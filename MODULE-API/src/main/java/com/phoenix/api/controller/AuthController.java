@@ -20,37 +20,23 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
  */
+package com.phoenix.api.controller;
 
-package com.phoenix.api.config;
+import com.phoenix.api.config.ApplicationUrls;
+import com.phoenix.domain.entity.DomainUser;
+import com.phoenix.domain.response.ApiResponse;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public final class ApplicationUrls {
-    /**
-     * public url matchers
-     */
-    public static final String[] PUBLIC_MATCHERS =
-            {
-                    "/webjars/**",
-                    "/css/**",
-                    "/js/**",
-                    "/images/**",
-                    "/sbat/index/**",
-                    "/sbat/error/**",
-                    "/lang",
-                    "/h2-console/**"
-            };
+@RestController
+@RequestMapping(value = ApplicationUrls.AUTH_PREFIX)
+public class AuthController {
 
-    /**
-     * swagger public urls
-     */
-    public static final String[] SWAGGER_MATCHERS =
-            {
-
-            };
-
-    public static final String AUTH_PREFIX = "/auth";
-    public static final String CREATE_ACCOUNT = "/sign-in";
-    public static final String SIGN_UP = "/sign-up";
-
+    @PostMapping(value = ApplicationUrls.CREATE_ACCOUNT)
+    public ApiResponse createAccount(@RequestBody DomainUser domainUser) {
+        return null;
+    }
 }

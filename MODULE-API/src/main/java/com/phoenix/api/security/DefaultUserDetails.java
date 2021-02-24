@@ -43,7 +43,7 @@ public class DefaultUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        Set<GrantedAuthority> authorities = new HashSet<>();
 
         for (String role : domainUser.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role));//NOPMD
