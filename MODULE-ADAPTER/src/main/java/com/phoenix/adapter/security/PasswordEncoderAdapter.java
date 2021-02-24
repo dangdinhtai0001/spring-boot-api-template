@@ -25,7 +25,7 @@
 package com.phoenix.adapter.security;
 
 import com.phoenix.common.security.crypto.BCryptPasswordEncoder;
-import com.phoenix.core.port.security.PasswordEncoderPort;
+import com.phoenix.core.port.PasswordEncoderPort;
 
 public class PasswordEncoderAdapter implements PasswordEncoderPort {
 

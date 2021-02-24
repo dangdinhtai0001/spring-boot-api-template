@@ -30,9 +30,7 @@ import com.phoenix.adapter.security.PasswordEncoderAdapter;
 import com.phoenix.common.security.DefaultTokenProvider;
 import com.phoenix.common.security.TokenProvider;
 import com.phoenix.common.security.KeyProvider;
-import com.phoenix.core.port.repositories.UserRepositoryPort;
-import com.phoenix.core.port.security.PasswordEncoderPort;
-import com.phoenix.infrastructure.repositories.primary.UserRepository;
+import com.phoenix.core.port.PasswordEncoderPort;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import java.io.File;
