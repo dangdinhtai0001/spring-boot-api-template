@@ -25,7 +25,6 @@ public class FlywayConfiguration {
     }
 
     @Bean(name = "InitializePrimaryFlywayMigrate")
-    @DependsOn("InitializePrimaryFlyway")
     public void migrateFlyway() throws IOException {
         if (this.flywayConfig.isMigrate()) {
             this.flywayConfig.migrate(this.flyway());

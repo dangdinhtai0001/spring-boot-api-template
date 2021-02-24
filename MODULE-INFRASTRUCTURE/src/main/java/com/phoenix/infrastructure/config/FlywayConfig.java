@@ -13,7 +13,7 @@ import java.util.Properties;
 
 @Getter
 public class FlywayConfig {
-    private boolean migrate ;
+    private boolean migrate;
 
     public FlywayConfig() {
     }
@@ -43,40 +43,32 @@ public class FlywayConfig {
     private FluentConfiguration loadConfiguration(String name) throws IOException {
         Properties properties = getProperties(name, DataSourceConstant.FLYWAY_CONFIG_FILE_POSTFIX);
 
+        Properties dsProperties = getProperties(name, DataSourceConstant.HIKARICP_CONFIG_FILE_POSTFIX);
+
+        String url = dsProperties.getProperty("jdbcUrl");
+        String username = dsProperties.getProperty("username");
+        String password = dsProperties.getProperty("password");
+
         FluentConfiguration configuration = Flyway.configure()
-                .locations("classpath:/migration")
+                .dataSource(url, username, password)
+//                .locations("classpath:/migration")
+                .locations("filesystem:MODULE-INFRASTRUCTURE/src/main/resources/migration")
                 .baselineOnMigrate(Boolean.parseBoolean(properties.getProperty("baselineOnMigrate")))
                 .baselineVersion(properties.getProperty("baselineVersion"))
                 .sqlMigrationPrefix(properties.getProperty("sqlMigrationPrefix"))
                 .sqlMigrationSeparator(properties.getProperty("sqlMigrationSeparator"))
                 .validateOnMigrate(Boolean.parseBoolean(properties.getProperty("validateOnMigrate")));
 
-        this.migrate =Boolean.parseBoolean(properties.getProperty("migrate"));
+        this.migrate = Boolean.parseBoolean(properties.getProperty("migrate"));
 
         return configuration;
-    }
-
-    private FluentConfiguration loadDataSourceConfiguration(String name, FluentConfiguration fluentConfiguration)
-            throws IOException {
-        Properties properties = getProperties(name, DataSourceConstant.HIKARICP_CONFIG_FILE_POSTFIX);
-
-        String url = properties.getProperty("jdbcUrl");
-        String username = properties.getProperty("username");
-        String password = properties.getProperty("password");
-
-        fluentConfiguration.dataSource(url, username, password);
-
-        return fluentConfiguration;
     }
 
     public Flyway initializeFlyway(String name) throws IOException {
 //        Flyway flyway = loadConfiguration(name).load();
         FluentConfiguration configuration = loadConfiguration(name);
-        configuration = loadDataSourceConfiguration(name, configuration);
 
-        Flyway flyway = configuration.load();
-
-        return flyway;
+        return configuration.load();
     }
 
     public void migrate(Flyway flyway) {

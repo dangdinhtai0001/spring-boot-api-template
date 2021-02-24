@@ -1,0 +1,12 @@
+-- ----------------------------------------------
+INSERT INTO ROLE (NAME)
+VALUES ('ROOT');
+INSERT INTO ROLE (NAME)
+VALUES ('ADMIN');
+INSERT INTO ROLE (NAME)
+VALUES ('USER');
+INSERT INTO ROLE (NAME)
+VALUES ('GUEST');
+
+commit;
+

@@ -90,7 +90,6 @@ public class PrimaryPersistenceConfig implements PersistenceConfig {
 
         // Scan Entities in Package:
         localContainerEntityManagerFactoryBean.setPackagesToScan(PACKAGES_TO_SCAN);
-        //localContainerEntityManagerFactoryBean.setPersistenceUnitName(PERSISTENCE_UNIT_NAME); // Important !!
         localContainerEntityManagerFactoryBean.setPersistenceUnitName(PersistenceUnitsName.PRIMARY_PERSISTENCE_UNIT_NAME); // Important !!
 
         //
