@@ -1,5 +1,6 @@
 package com.phoenix.domain.persistence.primary;
 
+import com.phoenix.domain.persistence.AuditEntity;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class RoleEntity {
+public class RoleEntity  {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

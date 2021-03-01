@@ -24,6 +24,7 @@
 
 package com.phoenix.domain.persistence;
 
+import com.phoenix.domain.persistence.primary.UserEntity;
 import org.springframework.data.domain.AuditorAware;
 
 import java.util.Optional;

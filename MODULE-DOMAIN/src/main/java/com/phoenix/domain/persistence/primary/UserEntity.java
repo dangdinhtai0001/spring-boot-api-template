@@ -1,5 +1,6 @@
 package com.phoenix.domain.persistence.primary;
 
+import com.phoenix.domain.persistence.AuditEntity;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class UserEntity {
+public class UserEntity extends AuditEntity<String> {
 
     @Id
     @Column(name = "ID")
@@ -30,10 +31,10 @@ public class UserEntity {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name ="LOCKED")
+    @Column(name ="LOCKED", columnDefinition = "boolean default false")
     private boolean locked;
 
-    @Column(name ="ENABLED")
+    @Column(name ="ENABLED", columnDefinition = "boolean default false")
     private boolean enabled;
 
 

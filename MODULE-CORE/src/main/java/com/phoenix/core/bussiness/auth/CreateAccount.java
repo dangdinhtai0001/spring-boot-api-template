@@ -11,22 +11,24 @@ import com.phoenix.core.common.UseCaseStatus;
 import com.phoenix.core.port.PasswordEncoderPort;
 import com.phoenix.core.port.UserRepositoryPort;
 import com.phoenix.domain.entity.DomainUser;
+import com.phoenix.domain.payload.CreateAccountPayload;
 import com.phoenix.domain.persistence.primary.UserEntity;
 
 import java.util.Optional;
 
-public class CreateAccount implements UseCase<DomainUser, String> {
+public class CreateAccount implements UseCase<CreateAccountPayload, UserEntity> {
 
     private final PasswordEncoderPort passwordEncoder;
     private final UserRepositoryPort userRepository;
 
-    public CreateAccount(PasswordEncoderPort passwordEncoder, UserRepositoryPort userRepository) {
+    public CreateAccount(PasswordEncoderPort passwordEncoder,
+                         UserRepositoryPort userRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
 
     @Override
-    public void validate(DomainUser user) {
+    public void validate(CreateAccountPayload user) {
         if (user == null)
             throw new UserValidationException("User should not be null");
         if (user.getUsername() != null && !Validation.isValidUsername(user.getUsername()))
@@ -44,13 +46,13 @@ public class CreateAccount implements UseCase<DomainUser, String> {
     }
 
     @Override
-    public UseCaseResponse<String> execute(DomainUser domainUser) {
+    public UseCaseResponse<UserEntity> execute(CreateAccountPayload payload) {
         try {
             //STEP-1. validate input
-            validate(domainUser);
+            validate(payload);
 
             //STEP-2. Normalize input
-            domainUser = normalize(domainUser);
+            DomainUser domainUser = normalize(payload);
 
             //STEP-3. Encode password
             String password = passwordEncoder.encode(domainUser.getPassword());
@@ -60,15 +62,28 @@ public class CreateAccount implements UseCase<DomainUser, String> {
             Optional<UserEntity> optional = userRepository.createUser(domainUser);
 
             if (optional.isEmpty()) {
-                return new UseCaseResponse<>(UseCaseStatus.FAILED, "Cannot store to database!!!", "");
+                return new UseCaseResponse<>(UseCaseStatus.FAILED,
+                        "Cannot store to database!!!",
+                        null);
             }
+
+            return new UseCaseResponse<>(UseCaseStatus.SUCCESS, "", optional.get());
         } catch (Exception e) {
-            return new UseCaseResponse<>(UseCaseStatus.FAILED, e.getMessage(), "");
+            return new UseCaseResponse<>(UseCaseStatus.FAILED, e.getMessage(), null);
         }
-        return new UseCaseResponse<>(UseCaseStatus.SUCCESS, "", "");
+
     }
 
-    private DomainUser normalize(DomainUser domainUser) {
+    private DomainUser normalize(CreateAccountPayload payload) {
+        DomainUser domainUser = new DomainUser();
+
+        domainUser.setUsername(payload.getUsername());
+        domainUser.setEmail(payload.getEmail());
+        domainUser.setPassword(payload.getPassword());
+        domainUser.setEnabled(false);
+        domainUser.setLocked(true);
+        domainUser.setRoles(payload.getRoles());
+
         return domainUser;
     }
 }

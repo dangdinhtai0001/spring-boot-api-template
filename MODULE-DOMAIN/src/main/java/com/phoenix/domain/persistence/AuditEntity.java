@@ -47,21 +47,21 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AuditEntity<U> {//NOPMD
     @CreatedBy
-    @Column(name = "CREATED_BY")
+    @Column(name = "CREATED_BY", columnDefinition = "varchar(50) default 'AUTO_SYSTEM'")
     protected U createdBy;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATED_DATE")
+    @Column(name = "DATE_CREATED", columnDefinition = "datetime default current_timestamp")
     protected Date createdDate;
 
     @LastModifiedBy
-    @Column(name = "LAST_MODIFIED_BY")
+    @Column(name = "LAST_MODIFIED_BY", columnDefinition = "varchar(50) default 'AUTO_SYSTEM'")
     protected U lastModifiedBy;
 
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "LAST_MODIFIED_DATE")
+    @Column(name = "LAST_MODIFIED_DATE", columnDefinition = "datetime default current_timestamp on update current_timestamp")
     protected Date lastModifiedDate;
 
     public U getCreatedBy() {

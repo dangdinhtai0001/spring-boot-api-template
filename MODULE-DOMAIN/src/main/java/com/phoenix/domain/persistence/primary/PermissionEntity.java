@@ -1,5 +1,6 @@
 package com.phoenix.domain.persistence.primary;
 
+import com.phoenix.domain.persistence.AuditEntity;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

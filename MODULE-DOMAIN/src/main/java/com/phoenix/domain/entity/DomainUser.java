@@ -37,8 +37,8 @@ public class DomainUser {
     private long id;
     private String username;
     private String password;
-    private String isLocked;
-    private String isEnabled;
+    private boolean isLocked;
+    private boolean isEnabled;
     private String email;
     private Set<String> roles;
     private Set<String> permissions;
