@@ -32,6 +32,7 @@ public class testBCrypt {
     public void testBCrypt(){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-        System.out.println(bCryptPasswordEncoder.encode("1234444"));//NOPMD
+        System.out.println(bCryptPasswordEncoder.encode("123456"));//NOPMD
+//        $2a$10$ZkDIGpKy2laQw4.ub9b7Ne1lZC4BD0od8iDi6PWXA.4VpcQmeybnG
     }
 }

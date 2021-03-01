@@ -31,9 +31,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BCryptPasswordEncoder {
-    private Logger logger = Logger.getLogger(BCryptPasswordEncoder.class);
+    private final Logger logger = Logger.getLogger(BCryptPasswordEncoder.class);
 
-    private Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2(a|y|b)?\\$(\\d\\d)\\$[./0-9A-Za-z]{53}");
+    private final Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2(a|y|b)?\\$(\\d\\d)\\$[./0-9A-Za-z]{53}");
 
     private final int strength;
 
