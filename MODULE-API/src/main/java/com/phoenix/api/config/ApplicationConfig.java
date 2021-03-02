@@ -24,6 +24,8 @@
 
 package com.phoenix.api.config;
 
+import com.phoenix.adapter.config.SpringBootConfig;
+import com.phoenix.adapter.controller.AuthControllerAdapter;
 import com.phoenix.adapter.security.AuthenticationManagerAdapter;
 import com.phoenix.common.security.KeyProvider;
 import com.phoenix.common.security.TokenProvider;
@@ -42,7 +44,7 @@ import java.io.IOException;
 
 @Configuration
 public class ApplicationConfig {
-    private final SpringConfiguration configuration;
+    private final SpringBootConfig configuration;
 
 
     public ApplicationConfig(@Qualifier("UserRepository") UserRepository userRepository,
@@ -51,11 +53,17 @@ public class ApplicationConfig {
     ) throws IOException, ClassNotFoundException {
         File file = new ClassPathResource(ApplicationConstant.KEY_FILE).getFile();
 
-        configuration = new SpringConfiguration(
+        configuration = new SpringBootConfig(
+                userRepository,
+                userRepositoryImp,
                 authenticationManager,
                 file);
     }
 
+    @Bean(value = "AuthControllerAdapterBean")
+    public AuthControllerAdapter authControllerAdapter() {
+        return configuration.authControllerAdapter();
+    }
 
 
     @Bean(value = "KeyProvider")

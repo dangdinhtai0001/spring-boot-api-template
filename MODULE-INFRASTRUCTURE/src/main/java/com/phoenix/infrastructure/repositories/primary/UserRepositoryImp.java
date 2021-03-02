@@ -54,10 +54,10 @@ public class UserRepositoryImp {
 
         List<Object[]> result = query.getResultList();
 
-        long id;
-        String  username, email, password;
-        boolean isLocked, isEnabled;
-        List<String> roles, permissions;
+        long id = 0;
+        String username = null, email = null, password = null;
+        boolean isLocked = false, isEnabled = false;
+        List<String> roles = null, permissions = null;
 
         for (Object[] record : result) {
             id = Long.parseLong(String.valueOf(record[0]));
@@ -77,7 +77,13 @@ public class UserRepositoryImp {
 
         domainUser.setId(id);
         domainUser.setUsername(username);
+        domainUser.setEmail(email);
+        domainUser.setPassword(password);
+        domainUser.setLocked(isLocked);
+        domainUser.setEnabled(isEnabled);
+        domainUser.setRoles((Set<String>) roles);
+        domainUser.setPermissions((Set<String>) permissions);
 
-        return null;
+        return domainUser;
     }
 }

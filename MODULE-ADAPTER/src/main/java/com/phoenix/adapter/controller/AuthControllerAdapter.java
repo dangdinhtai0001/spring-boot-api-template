@@ -1,7 +1,11 @@
 package com.phoenix.adapter.controller;
 
 import com.phoenix.core.bussiness.UseCase;
-import com.phoenix.domain.payload.RegisterUser;
+import com.phoenix.core.common.UseCaseResponse;
+import com.phoenix.domain.model.AccessToken;
+import com.phoenix.domain.payload.CreateAccountPayload;
+import com.phoenix.domain.payload.LoginByPasswordPayload;
+import com.phoenix.domain.persistence.primary.UserEntity;
 import com.phoenix.domain.response.ApiResponse;
 import com.phoenix.domain.response.HttpStatus;
 import com.phoenix.domain.response.ResponseType;
@@ -17,25 +21,37 @@ public class AuthControllerAdapter {
         this.signInByPassword = signInByPassword;
     }
 
-//    public ApiResponse createAccount(RegisterUser registerUser) {
-//        try {
-//            RegisterUserMapUser mapping = new RegisterUserMapUser();
-//
-//            User domainUser = signUpUseCase.execute(mapping.convert(registerUser));
-//
-//
-//            ApiResponse<User> userApiResponse = new ApiResponse<User>(
-//                    String.valueOf(HttpStatus.CREATED.value()),
-//                    ResponseType.INFO, domainUser,
-//                    "Enums.Message.RESOURCE_CREATED.value()");
-//            return userApiResponse;
-//        } catch (Exception e) {
-//            //e.printStackTrace();
-//            ApiResponse<Exception> exceptionApiResponse = new ApiResponse<>(
-//                    String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),
-//                    ResponseType.EXCEPTION, null,
-//                    e.getMessage());
-//            return exceptionApiResponse;
-//        }
-//    }
+    public ApiResponse createAccount(CreateAccountPayload payload) {
+        try {
+            UseCaseResponse<UserEntity> user = createAccount.execute(payload);
+
+            return new ApiResponse<>(
+                    String.valueOf(HttpStatus.CREATED.value()),
+                    ResponseType.INFO, user.getPayload(),
+                    "Enums.Message.RESOURCE_CREATED.value()");
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return new ApiResponse<>(
+                    String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+                    ResponseType.EXCEPTION, null,
+                    e.getMessage());
+        }
+    }
+
+    public ApiResponse signInByPassword(LoginByPasswordPayload payload) {
+        try {
+            UseCaseResponse<AccessToken> token = signInByPassword.execute(payload);
+
+            return new ApiResponse<>(
+                    String.valueOf(HttpStatus.CREATED.value()),
+                    ResponseType.INFO, token.getPayload(),
+                    "Enums.Message.RESOURCE_CREATED.value()");
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return new ApiResponse<>(
+                    String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+                    ResponseType.EXCEPTION, null,
+                    e.getMessage());
+        }
+    }
 }

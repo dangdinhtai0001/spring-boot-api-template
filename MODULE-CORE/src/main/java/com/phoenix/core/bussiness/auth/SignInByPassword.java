@@ -10,12 +10,13 @@ import com.phoenix.core.bussiness.UseCase;
 import com.phoenix.core.common.UseCaseResponse;
 import com.phoenix.core.common.UseCaseStatus;
 import com.phoenix.core.port.AuthenticationManagerPort;
-import com.phoenix.core.port.TokenProviderPort;
+import com.phoenix.common.security.TokenProvider;
 import com.phoenix.core.port.UserRepositoryPort;
 import com.phoenix.domain.entity.DomainUser;
 import com.phoenix.domain.model.AccessToken;
 import com.phoenix.domain.payload.LoginByPasswordPayload;
 
+import java.security.InvalidKeyException;
 import java.util.Date;
 import java.util.Optional;
 
@@ -23,11 +24,11 @@ public class SignInByPassword implements UseCase<LoginByPasswordPayload, AccessT
 
     private final AuthenticationManagerPort authenticationManager;
     private final UserRepositoryPort userRepository;
-    private final TokenProviderPort tokenProvider;
+    private final TokenProvider tokenProvider;
 
     public SignInByPassword(AuthenticationManagerPort authenticationManager,
                             UserRepositoryPort userRepository,
-                            TokenProviderPort tokenProvider) {
+                            TokenProvider tokenProvider) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.tokenProvider = tokenProvider;
@@ -71,7 +72,7 @@ public class SignInByPassword implements UseCase<LoginByPasswordPayload, AccessT
         }
     }
 
-    private AccessToken generateAccessToken(Optional<DomainUser> optional) {
+    private AccessToken generateAccessToken(Optional<DomainUser> optional) throws InvalidKeyException, com.phoenix.common.exception.security.InvalidKeyException {
         DomainUser user = optional.get();
         long expiration = tokenProvider.getExpiryDuration();
         Date now = new Date();
