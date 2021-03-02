@@ -36,10 +36,10 @@ import java.util.Set;
 public class DomainUser {
     private long id;
     private String username;
+    private String email;
     private String password;
     private boolean isLocked;
     private boolean isEnabled;
-    private String email;
     private Set<String> roles;
     private Set<String> permissions;
 }
