@@ -24,6 +24,12 @@ public class RoleEntity  {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "LEVEL", columnDefinition = "integer")
+    private int level;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
+
     @ManyToMany(mappedBy = "roles")
     private List<UserEntity> users;
 

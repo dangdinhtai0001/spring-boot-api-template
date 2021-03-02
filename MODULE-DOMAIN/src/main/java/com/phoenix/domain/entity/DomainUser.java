@@ -42,5 +42,4 @@ public class DomainUser {
     private String email;
     private Set<String> roles;
     private Set<String> permissions;
-
 }

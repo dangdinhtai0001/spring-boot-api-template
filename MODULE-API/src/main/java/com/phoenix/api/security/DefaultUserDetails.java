@@ -45,8 +45,8 @@ public class DefaultUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
 
-        for (String role : domainUser.getRoles()) {
-            authorities.add(new SimpleGrantedAuthority(role));//NOPMD
+        for (String permission : domainUser.getPermissions()) {
+            authorities.add(new SimpleGrantedAuthority(permission));//NOPMD
         }
         return authorities;
     }
@@ -68,7 +68,7 @@ public class DefaultUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !domainUser.isLocked();
     }
 
     @Override
@@ -78,6 +78,6 @@ public class DefaultUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return domainUser.isEnabled();
     }
 }

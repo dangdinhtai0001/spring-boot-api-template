@@ -24,6 +24,9 @@ public class PermissionEntity {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "DESCRIPTION")
+    private String description;
+
     @ManyToMany
     @JoinTable(
             name = "ROLE_PERMISSION",
