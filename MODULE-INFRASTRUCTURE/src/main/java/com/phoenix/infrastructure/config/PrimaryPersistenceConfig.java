@@ -41,7 +41,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Properties;
@@ -61,10 +60,10 @@ import java.util.Properties;
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class PrimaryPersistenceConfig implements PersistenceConfig {
 
-    private static final String PERSISTENCE_NAME = "primary";
+    public static final String PERSISTENCE_UNIT_NAME = "primary";
 
-    private static final String HIKARICP_CONFIG_FILE = PERSISTENCE_NAME + DataSourceConstant.HIKARICP_CONFIG_FILE_POSTFIX;
-    private static final String JPA_CONFIG_FILE = PERSISTENCE_NAME + DataSourceConstant.JPA_CONFIG_FILE_POSTFIX;
+    private static final String HIKARICP_CONFIG_FILE = PERSISTENCE_UNIT_NAME + DataSourceConstant.HIKARICP_CONFIG_FILE_POSTFIX;
+    private static final String JPA_CONFIG_FILE = PERSISTENCE_UNIT_NAME + DataSourceConstant.JPA_CONFIG_FILE_POSTFIX;
     private static final String[] PACKAGES_TO_SCAN = {"com.phoenix.domain.persistence.primary.**"};
 
     public PrimaryPersistenceConfig() {
@@ -90,8 +89,7 @@ public class PrimaryPersistenceConfig implements PersistenceConfig {
 
         // Scan Entities in Package:
         localContainerEntityManagerFactoryBean.setPackagesToScan(PACKAGES_TO_SCAN);
-        //localContainerEntityManagerFactoryBean.setPersistenceUnitName(PersistenceUnitsName.PRIMARY_PERSISTENCE_UNIT_NAME); // Important !!
-        localContainerEntityManagerFactoryBean.setPersistenceUnitName(PERSISTENCE_NAME); // Important !!
+        localContainerEntityManagerFactoryBean.setPersistenceUnitName(PERSISTENCE_UNIT_NAME); // Important !!
 
         //
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
