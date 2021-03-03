@@ -33,5 +33,8 @@ from user u
          join view_user_permissions up on u.ID = up.user_id where u.USERNAME = ? or u.EMAIL = ?;
 
 
+select user.id, role.id from role, user where (user.email = 'admin' or user.USERNAME = 'admin') and role.NAME in ('ROOT');
+
+update user set LOCKED = 0, ENABLED =1 where USERNAME = 'dangdinhtai';
 
 commit;

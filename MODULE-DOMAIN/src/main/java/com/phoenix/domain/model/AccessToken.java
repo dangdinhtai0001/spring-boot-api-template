@@ -25,6 +25,9 @@
 
 package com.phoenix.domain.model;
 
+import lombok.ToString;
+
+@ToString
 public class AccessToken {
     private String accessToken;
     private String expiresIn;
@@ -113,4 +116,6 @@ public class AccessToken {
     public void setScope(String scope) {
         this.scope = scope;
     }
+
+
 }

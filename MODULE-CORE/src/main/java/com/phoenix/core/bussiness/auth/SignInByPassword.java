@@ -1,6 +1,7 @@
 package com.phoenix.core.bussiness.auth;
 
 import com.phoenix.common.exception.runtime.UserValidationException;
+import com.phoenix.common.lang.Collections;
 import com.phoenix.common.lang.Strings;
 import com.phoenix.common.security.Scope;
 import com.phoenix.common.security.component.Claims;
@@ -14,13 +15,13 @@ import com.phoenix.common.security.TokenProvider;
 import com.phoenix.core.port.UserRepositoryPort;
 import com.phoenix.domain.entity.DomainUser;
 import com.phoenix.domain.model.AccessToken;
-import com.phoenix.domain.payload.LoginByPasswordPayload;
+import com.phoenix.domain.payload.SignInByPasswordPayload;
 
 import java.security.InvalidKeyException;
 import java.util.Date;
 import java.util.Optional;
 
-public class SignInByPassword implements UseCase<LoginByPasswordPayload, AccessToken> {
+public class SignInByPassword implements UseCase<SignInByPasswordPayload, AccessToken> {
 
     private final AuthenticationManagerPort authenticationManager;
     private final UserRepositoryPort userRepository;
@@ -35,19 +36,19 @@ public class SignInByPassword implements UseCase<LoginByPasswordPayload, AccessT
     }
 
     @Override
-    public void validate(LoginByPasswordPayload loginByPasswordPayload) {
-        if (loginByPasswordPayload == null)
+    public void validate(SignInByPasswordPayload signInByPasswordPayload) {
+        if (signInByPasswordPayload == null)
             throw new UserValidationException("User should not be null");
-        if (!Strings.isNullOrNotBlank(loginByPasswordPayload.getUsername()))
+        if (!Strings.isNullOrNotBlank(signInByPasswordPayload.getUsername()))
             throw new UserValidationException("Username can be null but not blank.");
-        if (!Strings.isNullOrNotBlank(loginByPasswordPayload.getEmail()))
+        if (!Strings.isNullOrNotBlank(signInByPasswordPayload.getEmail()))
             throw new UserValidationException("Email can be null but not blank.");
-        if (!Strings.hasLength(loginByPasswordPayload.getEmail()) && !Strings.hasLength(loginByPasswordPayload.getUsername()))
+        if (!Strings.hasLength(signInByPasswordPayload.getEmail()) && !Strings.hasLength(signInByPasswordPayload.getUsername()))
             throw new UserValidationException("Username and email must not be concurrently empty.");
     }
 
     @Override
-    public UseCaseResponse<AccessToken> execute(LoginByPasswordPayload payload) {
+    public UseCaseResponse<AccessToken> execute(SignInByPasswordPayload payload) {
         try {
             //STEP-1. validate input
             validate(payload);
@@ -76,11 +77,10 @@ public class SignInByPassword implements UseCase<LoginByPasswordPayload, AccessT
         DomainUser user = optional.get();
         long expiration = tokenProvider.getExpiryDuration();
         Date now = new Date();
-        String accessTokenScope = Scope.ACCESS.toString();
+        String accessTokenScope = Collections.collectionToString(user.getRoles(), " ");
         String accessTokenId = IdGenerator.generate();
 
         Claims claims = new DefaultClaims();
-
 
         claims.setId(accessTokenId);
         claims.setExpiration(new Date(now.getTime() + expiration));

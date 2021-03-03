@@ -24,18 +24,18 @@
 
 package com.phoenix.domain.payload;
 
-public class LoginByPasswordPayload {
+public class SignInByPasswordPayload {
     private String username;
     private String password;
     private String email;
 
-    public LoginByPasswordPayload(String username, String password, String email) {
+    public SignInByPasswordPayload(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-    public LoginByPasswordPayload() {
+    public SignInByPasswordPayload() {
     }
 
     public String getUsername() {
@@ -64,7 +64,7 @@ public class LoginByPasswordPayload {
 
     @Override
     public String toString() {
-        return "LoginByPasswordPayload{" +
+        return "SignInByPasswordPayload{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

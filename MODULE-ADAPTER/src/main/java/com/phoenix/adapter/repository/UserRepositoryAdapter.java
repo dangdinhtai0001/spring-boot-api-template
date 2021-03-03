@@ -19,22 +19,23 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     }
 
     @Override
-    public Optional<UserEntity> createUser(DomainUser domainUser) {
-        return Optional.empty();
+    public int createUser(DomainUser domainUser) {
+        int result = userRepositoryImp.createUser(domainUser);
+        return result;
     }
 
     @Override
     public Optional<UserEntity> findByEmail(String email) {
-        return Optional.empty();
+        return Optional.ofNullable(userRepository.findByEmail(email));
     }
 
     @Override
     public Optional<UserEntity> findByUsername(String username) {
-        return Optional.empty();
+        return Optional.ofNullable(userRepository.findByUsername(username));
     }
 
     @Override
     public Optional<DomainUser> findUserByEmailOrUsername(String username) {
-        return Optional.empty();
+        return Optional.ofNullable(userRepositoryImp.findUserByEmailOrUsername(username));
     }
 }

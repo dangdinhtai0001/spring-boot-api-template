@@ -25,11 +25,10 @@ package com.phoenix.api.controller;
 
 import com.phoenix.adapter.controller.AuthControllerAdapter;
 import com.phoenix.api.config.ApplicationUrls;
-import com.phoenix.domain.entity.DomainUser;
 import com.phoenix.domain.payload.CreateAccountPayload;
+import com.phoenix.domain.payload.SignInByPasswordPayload;
 import com.phoenix.domain.response.ApiResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +50,7 @@ public class AuthController {
     }
 
     @PostMapping(value = ApplicationUrls.SIGN_IN_BY_PASSWORD)
-    public ApiResponse signInByPassword(@RequestBody DomainUser domainUser) {
-        return null;
+    public ApiResponse signInByPassword(@RequestBody SignInByPasswordPayload payload) {
+        return authControllerAdapter.signInByPassword(payload);
     }
 }

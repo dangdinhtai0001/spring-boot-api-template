@@ -34,6 +34,29 @@ public final class Collections {
     } //prevent instantiation
 
     /**
+     * Convert the supplied collection into a string. regex = ,
+     */
+    public static String collectionToString(Collection collection) {
+        return collectionToString(collection, ",");
+    }
+
+    /**
+     * Convert the supplied collection into a string.
+     */
+    public static String collectionToString(Collection list, String regex) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Object element : list) {
+            stringBuilder.append(element.toString());
+            stringBuilder.append(regex);
+        }
+
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+
+        return stringBuilder.toString();
+    }
+
+    /**
      * Convert the supplied list into a set.
      */
     public static Set listToSet(List list) {

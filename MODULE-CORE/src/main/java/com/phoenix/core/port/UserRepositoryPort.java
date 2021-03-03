@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRepositoryPort {
-    public Optional<UserEntity> createUser(DomainUser domainUser);
+    public int createUser(DomainUser domainUser);
 
     public Optional<UserEntity> findByEmail(String email);
 

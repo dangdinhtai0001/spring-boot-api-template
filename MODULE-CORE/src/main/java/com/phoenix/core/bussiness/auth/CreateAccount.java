@@ -16,7 +16,7 @@ import com.phoenix.domain.persistence.primary.UserEntity;
 
 import java.util.Optional;
 
-public class CreateAccount implements UseCase<CreateAccountPayload, UserEntity> {
+public class CreateAccount implements UseCase<CreateAccountPayload, Object> {
 
     private final PasswordEncoderPort passwordEncoder;
     private final UserRepositoryPort userRepository;
@@ -40,13 +40,13 @@ public class CreateAccount implements UseCase<CreateAccountPayload, UserEntity> 
         if (!Strings.isNullOrNotBlank(user.getEmail()))
             throw new UserValidationException("Email can be null but not blank.");
         if (userRepository.findByEmail(user.getEmail()).isPresent())
-            throw new UserAlreadyExistsException(user.getEmail() + " is already exist.");
+            throw new UserAlreadyExistsException("Email: "+ user.getEmail() + " is already exist.");
         if (userRepository.findByUsername(user.getUsername()).isPresent())
             throw new UserAlreadyExistsException("Username: " + user.getUsername() + " is already exist.");
     }
 
     @Override
-    public UseCaseResponse<UserEntity> execute(CreateAccountPayload payload) {
+    public UseCaseResponse<Object> execute(CreateAccountPayload payload) {
         try {
             //STEP-1. validate input
             validate(payload);
@@ -59,15 +59,15 @@ public class CreateAccount implements UseCase<CreateAccountPayload, UserEntity> 
             domainUser.setPassword(password);
 
             //STEP-4. Stored
-            Optional<UserEntity> optional = userRepository.createUser(domainUser);
+            int stored = userRepository.createUser(domainUser);
 
-            if (optional.isEmpty()) {
+            if (stored == -1) {
                 return new UseCaseResponse<>(UseCaseStatus.FAILED,
                         "Cannot store to database!!!",
                         null);
             }
 
-            return new UseCaseResponse<>(UseCaseStatus.SUCCESS, "", optional.get());
+            return new UseCaseResponse<>(UseCaseStatus.SUCCESS, "", domainUser);
         } catch (Exception e) {
             return new UseCaseResponse<>(UseCaseStatus.FAILED, e.getMessage(), null);
         }
