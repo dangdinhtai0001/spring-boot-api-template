@@ -81,8 +81,8 @@ public class UserRepositoryImp {
         domainUser.setPassword(password);
         domainUser.setLocked(isLocked);
         domainUser.setEnabled(isEnabled);
-        domainUser.setRoles((Set<String>) roles);
-        domainUser.setPermissions((Set<String>) permissions);
+        domainUser.setRoles(com.phoenix.common.lang.Collections.listToSet(roles));
+        domainUser.setPermissions(com.phoenix.common.lang.Collections.listToSet(permissions));
 
         return domainUser;
     }

@@ -32,11 +32,19 @@
     </properties>
 
     <dependencies>
+        <!--        ===== module ===-->
         <dependency>
             <groupId>com.phoenix.domain</groupId>
             <artifactId>MODULE-DOMAIN</artifactId>
             <version>0.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.phoenix.common</groupId>
+            <artifactId>MODULE-COMMON</artifactId>
+            <version>0.0.0</version>
+        </dependency>
+        <!--        ===== module ===-->
+
 
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
         <dependency>

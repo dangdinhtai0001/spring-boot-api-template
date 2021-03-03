@@ -23,20 +23,35 @@
  */
 package com.phoenix.api.controller;
 
+import com.phoenix.adapter.controller.AuthControllerAdapter;
 import com.phoenix.api.config.ApplicationUrls;
 import com.phoenix.domain.entity.DomainUser;
+import com.phoenix.domain.payload.CreateAccountPayload;
 import com.phoenix.domain.response.ApiResponse;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("AuthController")
 @RequestMapping(value = ApplicationUrls.AUTH_PREFIX)
 public class AuthController {
 
+    private final AuthControllerAdapter authControllerAdapter;
+
+    public AuthController(@Qualifier("AuthControllerAdapterBean") AuthControllerAdapter authControllerAdapter) {
+        this.authControllerAdapter = authControllerAdapter;
+    }
+
     @PostMapping(value = ApplicationUrls.CREATE_ACCOUNT)
-    public ApiResponse createAccount(@RequestBody DomainUser domainUser) {
+    public ApiResponse createAccount(@RequestBody CreateAccountPayload payload) {
+        return authControllerAdapter.createAccount(payload);
+    }
+
+    @PostMapping(value = ApplicationUrls.SIGN_IN_BY_PASSWORD)
+    public ApiResponse signInByPassword(@RequestBody DomainUser domainUser) {
         return null;
     }
 }

@@ -60,11 +60,18 @@ public class ApplicationConfig {
                 file);
     }
 
+    //=======================================================
+    //                   CONTROLLER
+    //=======================================================
+
     @Bean(value = "AuthControllerAdapterBean")
     public AuthControllerAdapter authControllerAdapter() {
         return configuration.authControllerAdapter();
     }
 
+    //=======================================================
+    //                   DEPENDENCY
+    //=======================================================
 
     @Bean(value = "KeyProvider")
     public KeyProvider keyProvider() {

@@ -34,6 +34,15 @@ public final class Collections {
     } //prevent instantiation
 
     /**
+     * Convert the supplied list into a set.
+     */
+    public static Set listToSet(List list) {
+        Set set = new HashSet();
+        set.addAll(list);
+        return set;
+    }
+
+    /**
      * Return <code>true</code> if the supplied Collection is <code>null</code>
      * or empty. Otherwise, return <code>false</code>.
      *

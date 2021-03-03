@@ -50,7 +50,7 @@ public final class ApplicationUrls {
             };
 
     public static final String AUTH_PREFIX = "/auth";
-    public static final String CREATE_ACCOUNT = "/sign-in";
-    public static final String SIGN_UP = "/sign-up";
+    public static final String CREATE_ACCOUNT = "/create-account";
+    public static final String SIGN_IN_BY_PASSWORD = "/sign-in/password";
 
 }
