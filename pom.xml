@@ -13,7 +13,6 @@
         <module>MODULE-COMMON</module>
         <module>MODULE-API</module>
         <module>MODULE-DOMAIN</module>
-        <module>MODULE-CONFIG</module>
         <module>MODULE-ADAPTER</module>
         <module>MODULE-INFRASTRUCTURE</module>
         <module>coverage-report</module>

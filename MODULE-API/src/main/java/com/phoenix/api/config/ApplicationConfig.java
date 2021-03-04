@@ -29,7 +29,6 @@ import com.phoenix.adapter.controller.AuthControllerAdapter;
 import com.phoenix.adapter.security.AuthenticationManagerAdapter;
 import com.phoenix.common.security.KeyProvider;
 import com.phoenix.common.security.TokenProvider;
-import com.phoenix.config.SpringConfiguration;
 import com.phoenix.infrastructure.repositories.primary.UserRepository;
 import com.phoenix.infrastructure.repositories.primary.UserRepositoryImp;
 import org.springframework.beans.factory.annotation.Qualifier;

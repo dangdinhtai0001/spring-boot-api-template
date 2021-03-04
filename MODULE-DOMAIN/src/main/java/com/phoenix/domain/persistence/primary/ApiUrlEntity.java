@@ -7,20 +7,23 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "PERMISSION", schema = "template")
+@Table(name = "API_URL", schema = "template")
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class PermissionEntity {
+public class ApiUrlEntity {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "URL", unique = true)
+    private String url;
+
+    @Column(name = "NAME", unique = true)
     private String name;
 
     @Column(name = "DESCRIPTION")
@@ -28,12 +31,10 @@ public class PermissionEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "ROLE_PERMISSION",
-            joinColumns = @JoinColumn(name = "PERMISSION_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
+            name = "API_URL_PERMISSION",
+            joinColumns = @JoinColumn(name = "URL_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PERMISSION_ID", referencedColumnName = "ID")
     )
-    private List<RoleEntity> roles;
+    private List<PermissionEntity> permissions;
 
-    @ManyToMany(mappedBy = "permissions")
-    private List<ApiUrlEntity> urls;
 }

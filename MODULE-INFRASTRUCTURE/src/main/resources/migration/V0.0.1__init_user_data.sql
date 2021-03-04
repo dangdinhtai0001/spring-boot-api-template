@@ -59,6 +59,7 @@ values (1, 1),
        (12, 2),
        (2, 3),
        (11, 3),
+       (12, 3),
        (2, 4)
 ;
 
@@ -101,5 +102,19 @@ from role r
          join permission p on p.id = rp.PERMISSION_ID
 group by r.name;
 
+# -------------------------------------------- API_URL table
+
+insert into API_URL (URL, NAME, DESCRIPTION)
+values ('/auth/create-account', 'CREATE_ACCOUNT', ''),
+       ('/auth/sign-in/password', 'SIGN_IN_BY_PASSWORD', ''),
+       ('/auth/create-qr-code', 'CREATE_QR_CODE', '')
+;
+
+# -------------------------------------------- API_URL_PERMISSION
+
+insert into API_URL_PERMISSION(URL_ID, PERMISSION_ID)
+values (1, 1),
+       (3, 11)
+;
 commit;
 

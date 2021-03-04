@@ -63,12 +63,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.phoenix.config</groupId>
-            <artifactId>MODULE-CONFIG</artifactId>
-            <version>0.0.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.phoenix.core</groupId>
             <artifactId>MODULE-CORE</artifactId>
             <version>0.0.0</version>

@@ -29,6 +29,7 @@ import com.phoenix.api.filter.JwtAuthenticationFilter;
 import com.phoenix.api.security.DefaultBcryptPasswordEncoder;
 import com.phoenix.api.security.JwtAuthenticationEntryPoint;
 import com.phoenix.common.security.TokenProvider;
+import com.phoenix.domain.model.UrlAntMatcherModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,14 +59,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final TokenProvider tokenProvider;
     private final UserDetailsService userDetailsService;
+    private final ApplicationUrlLoader applicationUrlLoader;
 
     public ApplicationSecurityConfig(
             @Qualifier("JwtAuthenticationEntryPoint") JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
-            @Qualifier(value = "TokenProvider") TokenProvider tokenProvider,
-            @Qualifier("DefaultUserDetailsService") UserDetailsService userDetailsService) {
+            @Qualifier("TokenProvider") TokenProvider tokenProvider,
+            @Qualifier("DefaultUserDetailsService") UserDetailsService userDetailsService,
+            @Qualifier("ApplicationUrlLoader") ApplicationUrlLoader applicationUrlLoader) {
         this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
         this.tokenProvider = tokenProvider;
         this.userDetailsService = userDetailsService;
+        this.applicationUrlLoader = applicationUrlLoader;
     }
 
     @Bean(name = "JwtAuthenticationFilter")
@@ -102,19 +106,40 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         String authPattern = "/**" + ApplicationUrls.AUTH_PREFIX + "/**";
 
-
         http.cors().and()
                 .csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers(authPattern).permitAll()
-                .antMatchers(ApplicationUrls.PUBLIC_MATCHERS).permitAll()
-                .antMatchers(ApplicationUrls.SWAGGER_MATCHERS).permitAll()
-                .anyRequest().authenticated()
+                .disable();
+
+
+        for (UrlAntMatcherModel matcherModel : applicationUrlLoader.getPermitAllAntMatchers()) {
+            System.out.println(matcherModel.getUrl());
+            http.authorizeRequests().antMatchers(matcherModel.getUrl()).permitAll();
+        }
+
+        for (UrlAntMatcherModel matcherModel : applicationUrlLoader.getNeedAuthAntMatchers()) {
+            System.out.println(matcherModel.getUrl());
+            http.authorizeRequests().antMatchers(matcherModel.getUrl()).hasAnyRole(matcherModel.getPermissions());
+        }
+
+        http
+                .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+//        http.cors().and()
+//                .csrf()
+//                .disable()
+//                .authorizeRequests()
+//                .antMatchers(authPattern).permitAll()
+//                .antMatchers(ApplicationUrls.PUBLIC_MATCHERS).permitAll()
+//                .antMatchers(ApplicationUrls.SWAGGER_MATCHERS).permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//                .and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
