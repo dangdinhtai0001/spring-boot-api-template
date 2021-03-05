@@ -48,6 +48,7 @@ public class DefaultUserDetails implements UserDetails {
         for (String permission : domainUser.getPermissions()) {
             authorities.add(new SimpleGrantedAuthority(permission));//NOPMD
         }
+
         return authorities;
     }
 

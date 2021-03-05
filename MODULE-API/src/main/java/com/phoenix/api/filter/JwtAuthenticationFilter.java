@@ -59,10 +59,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        if (request.getRequestURI().contains(ApplicationUrls.AUTH_PREFIX))
-            return true;
-        return false;
+//        if (request.getRequestURI().contains(ApplicationUrls.AUTH_PREFIX))
+//            return true;
+//        return false;
+        return true;
     }
+
 
     /**
      * Filter the incoming request for a valid token in the request header

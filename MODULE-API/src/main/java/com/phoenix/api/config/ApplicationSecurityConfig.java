@@ -46,6 +46,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
+
 /**
  * Application security config
  */
@@ -118,6 +120,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
         for (UrlAntMatcherModel matcherModel : applicationUrlLoader.getNeedAuthAntMatchers()) {
             System.out.println(matcherModel.getUrl());
+            System.out.println(Arrays.toString(matcherModel.getPermissions()));
             http.authorizeRequests().antMatchers(matcherModel.getUrl()).hasAnyRole(matcherModel.getPermissions());
         }
 
