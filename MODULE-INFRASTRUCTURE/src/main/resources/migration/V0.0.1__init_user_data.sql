@@ -1,9 +1,10 @@
 -- ---------------------------------------------- user table
 
-INSERT INTO USER (USERNAME, LOCKED, ENABLED)
-VALUES ('root', false, true),
-       ('admin', false, true),
-       ('user', false, true)
+INSERT INTO USER (USERNAME, LOCKED, ENABLED, PASSWORD)
+VALUES ('root', false, true, '$2a$10$UQpcFzzwQyiqV.VwgNzDlO18VsEyGi9GAGo/f828Zx54V6NtOh0DK'), # 123456
+       ('admin', false, true, '$2a$10$UQpcFzzwQyiqV.VwgNzDlO18VsEyGi9GAGo/f828Zx54V6NtOh0DK'),
+       ('user', false, true, '$2a$10$UQpcFzzwQyiqV.VwgNzDlO18VsEyGi9GAGo/f828Zx54V6NtOh0DK'),
+       ('test', false, true, '$2a$10$UQpcFzzwQyiqV.VwgNzDlO18VsEyGi9GAGo/f828Zx54V6NtOh0DK')
 ;
 
 # 1	AUTO_SYSTEM	2021-03-01 21:51:52	AUTO_SYSTEM	2021-03-01 21:51:52		1	0		root
@@ -69,7 +70,8 @@ insert into user_role(user_id, role_id)
 values (1, 1),
        (2, 2),
        (3, 3),
-       (3, 4)
+       (3, 4),
+       (4, 3)
 ;
 
 # -------------------------------------------- create view: VIEW_USER_PERMISSIONS
@@ -107,6 +109,7 @@ group by r.name;
 insert into API_URL (URL, NAME, DESCRIPTION)
 values ('/auth/create-account', 'CREATE_ACCOUNT', ''),
        ('/auth/sign-in/password', 'SIGN_IN_BY_PASSWORD', ''),
+       ('/auth/sign-in/qr', 'SIGN_IN_BY_QR_CODE', ''),
        ('/auth/create-qr-code', 'CREATE_QR_CODE', '')
 ;
 

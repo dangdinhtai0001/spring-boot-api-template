@@ -48,3 +48,5 @@ from user u
 where u.USERNAME = 'dangdinhtai'
    or u.EMAIL = 'dangdinhtai';
 
+update user set PASSWORD = '$2a$10$UQpcFzzwQyiqV.VwgNzDlO18VsEyGi9GAGo/f828Zx54V6NtOh0DK';
+
