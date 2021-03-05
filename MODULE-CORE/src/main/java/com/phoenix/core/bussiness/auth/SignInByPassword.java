@@ -77,7 +77,8 @@ public class SignInByPassword implements UseCase<SignInByPasswordPayload, Access
         DomainUser user = optional.get();
         long expiration = tokenProvider.getExpiryDuration();
         Date now = new Date();
-        String accessTokenScope = Collections.collectionToString(user.getRoles(), " ");
+        //String accessTokenScope = Collections.collectionToString(user.getRoles(), " ");
+        String accessTokenScope = Scope.ACCESS.toString();
         String accessTokenId = IdGenerator.generate();
 
         Claims claims = new DefaultClaims();

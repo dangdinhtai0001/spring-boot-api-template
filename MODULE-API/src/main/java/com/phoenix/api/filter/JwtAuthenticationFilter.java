@@ -62,7 +62,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 //        if (request.getRequestURI().contains(ApplicationUrls.AUTH_PREFIX))
 //            return true;
 //        return false;
-        return true;
+        return false;
     }
 
 
@@ -92,7 +92,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             } else {
-                log.error("This is not a access token");
+                log.error("This token doesn't have ACCESS privilege. Please mke sure you don't confuse access token and refresh token");
             }
         } else {
             log.error("Failed to set user authentication in security context: ");
@@ -120,11 +120,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private Set<String> getScopeFromToken(String token) {
         Claims claims = tokenProvider.getClaimsFromToken(token);
-        Set<String> scope = new HashSet<>();
 
         String stringScope = (String) claims.get("scope");
 
-        scope.addAll(Arrays.asList(stringScope.split(" ")));
+        Set<String> scope = new HashSet<>(Arrays.asList(stringScope.split(" ")));
 
         return scope;
     }

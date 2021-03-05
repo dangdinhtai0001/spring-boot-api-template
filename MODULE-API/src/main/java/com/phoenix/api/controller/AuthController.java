@@ -29,10 +29,7 @@ import com.phoenix.domain.payload.CreateAccountPayload;
 import com.phoenix.domain.payload.SignInByPasswordPayload;
 import com.phoenix.domain.response.ApiResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController("AuthController")
 @RequestMapping(value = ApplicationUrls.AUTH_PREFIX)
@@ -52,5 +49,10 @@ public class AuthController {
     @PostMapping(value = ApplicationUrls.SIGN_IN_BY_PASSWORD)
     public ApiResponse signInByPassword(@RequestBody SignInByPasswordPayload payload) {
         return authControllerAdapter.signInByPassword(payload);
+    }
+
+    @PostMapping(value = ApplicationUrls.CREATE_QR_CODE_FOR_SIGN_IN)
+    public ApiResponse createQrCodeForSignIn(@RequestHeader(value = "Authorization") String token) {
+        return authControllerAdapter.createQrCodeForSignIn(token);
     }
 }

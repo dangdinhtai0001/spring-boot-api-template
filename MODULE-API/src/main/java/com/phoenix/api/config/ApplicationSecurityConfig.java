@@ -114,14 +114,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         for (UrlAntMatcherModel matcherModel : applicationUrlLoader.getPermitAllAntMatchers()) {
-            System.out.println(matcherModel.getUrl());
             http.authorizeRequests().antMatchers(matcherModel.getUrl()).permitAll();
         }
 
         for (UrlAntMatcherModel matcherModel : applicationUrlLoader.getNeedAuthAntMatchers()) {
-            System.out.println(matcherModel.getUrl());
-            System.out.println(Arrays.toString(matcherModel.getPermissions()));
-            http.authorizeRequests().antMatchers(matcherModel.getUrl()).hasAnyRole(matcherModel.getPermissions());
+            http.authorizeRequests().antMatchers(matcherModel.getUrl()).hasAnyAuthority(matcherModel.getPermissions());
         }
 
         http

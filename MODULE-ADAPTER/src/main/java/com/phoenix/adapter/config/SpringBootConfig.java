@@ -9,9 +9,11 @@ import com.phoenix.common.security.DefaultTokenProvider;
 import com.phoenix.common.security.KeyProvider;
 import com.phoenix.common.security.TokenProvider;
 import com.phoenix.core.bussiness.auth.CreateAccount;
+import com.phoenix.core.bussiness.auth.CreateQrCodeForSignIn;
 import com.phoenix.core.bussiness.auth.SignInByPassword;
 import com.phoenix.core.port.PasswordEncoderPort;
 import com.phoenix.core.port.UserRepositoryPort;
+import com.phoenix.domain.payload.CreateAccountPayload;
 import com.phoenix.infrastructure.repositories.primary.UserRepository;
 import com.phoenix.infrastructure.repositories.primary.UserRepositoryImp;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -44,7 +46,8 @@ public class SpringBootConfig implements AdapterConfig {
     public AuthControllerAdapter authControllerAdapter() {
         return new AuthControllerAdapter(
                 this.createAccountUseCase(),
-                this.signInByPasswordUseCase()
+                this.signInByPasswordUseCase(),
+                this.createQrCodeForSignIn()
         );
     }
 
@@ -58,6 +61,10 @@ public class SpringBootConfig implements AdapterConfig {
 
     public SignInByPassword signInByPasswordUseCase() {
         return new SignInByPassword(this.authenticationManager, this.userRepositoryPort, this.createTokenProvider());
+    }
+
+    public CreateQrCodeForSignIn createQrCodeForSignIn() {
+        return new CreateQrCodeForSignIn(this.createKeyProvider(), this.createTokenProvider());
     }
 
     //=======================================================
