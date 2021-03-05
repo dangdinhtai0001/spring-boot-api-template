@@ -32,6 +32,8 @@ public final class ApplicationConstant {
      */
     public static final String KEY_FILE = "key.dat";
 
+    public static final String SHORT_KEY = "short-key.dat";
+
     /**
      * Field to represent API key on the requests/responses header
      */

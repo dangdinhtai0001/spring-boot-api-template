@@ -9,13 +9,9 @@ import com.phoenix.common.mfa.generator.QrGenerator;
 import com.phoenix.common.mfa.generator.ZxingPngQrGenerator;
 import com.phoenix.common.security.KeyProvider;
 import com.phoenix.common.security.TokenProvider;
-import com.phoenix.common.util.Base32;
 import com.phoenix.core.bussiness.UseCase;
 import com.phoenix.core.common.UseCaseResponse;
 import com.phoenix.core.common.UseCaseStatus;
-
-import java.security.SecureRandom;
-import java.util.Arrays;
 
 public class CreateQrCodeForSignIn implements UseCase<String, String> {
     private final KeyProvider keyProvider;
@@ -34,15 +30,7 @@ public class CreateQrCodeForSignIn implements UseCase<String, String> {
     @Override
     public UseCaseResponse<String> execute(String token) {
         try {
-            SecureRandom secureRandom = new SecureRandom();
-            byte[] bytes = new byte[(32 * 5) / 8];
-            secureRandom.nextBytes(bytes);
-
-            String key = Base32.encode(bytes);
-
-            System.out.println(key);
-
-            //String key = keyProvider.getKeyWrapper().getEncoded();
+            String key = keyProvider.getKeyWrapper().getEncoded();
             String username = (String) tokenProvider.getClaimsFromToken(token).get("username");
 
             TotpData data = (TotpData) MfaDataFactory.getMfaData(MfaType.TOTP, username, key,

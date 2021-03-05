@@ -42,8 +42,8 @@ public class DefaultTokenProvider implements TokenProvider {
     private final KeyWrapper keyWrapper;
     private final long DEFAULT_EXPIRATION = 604800000L;
 
-    public DefaultTokenProvider(KeyProvider keyProvider) {
-        this.keyWrapper = keyProvider.getKeyWrapper();
+    public DefaultTokenProvider(KeyProvider base64KeyProvider) {
+        this.keyWrapper = base64KeyProvider.getKeyWrapper();
     }
 
     @Override

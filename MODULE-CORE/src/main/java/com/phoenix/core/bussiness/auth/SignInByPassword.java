@@ -8,6 +8,7 @@ import com.phoenix.common.security.component.Claims;
 import com.phoenix.common.security.component.DefaultClaims;
 import com.phoenix.common.util.IdGenerator;
 import com.phoenix.core.bussiness.UseCase;
+import com.phoenix.core.bussiness.UseCaseUtils;
 import com.phoenix.core.common.UseCaseResponse;
 import com.phoenix.core.common.UseCaseStatus;
 import com.phoenix.core.port.AuthenticationManagerPort;
@@ -63,56 +64,15 @@ public class SignInByPassword implements UseCase<SignInByPasswordPayload, Access
 
             //STEP-4. Generate access token
             if (optional.isPresent()) {
-                AccessToken token = generateAccessToken(optional);
+                AccessToken token = UseCaseUtils.generateAccessToken(optional, tokenProvider);
                 return new UseCaseResponse<>(UseCaseStatus.SUCCESS, "", token);
             } else {
-                return new UseCaseResponse<>(UseCaseStatus.FAILED, "Cannot store to database!!!", null);
+                return new UseCaseResponse<>(UseCaseStatus.FAILED, "Cannot find user from database!!!", null);
             }
         } catch (Exception e) {
             return new UseCaseResponse<>(UseCaseStatus.FAILED, e.getMessage(), null);
         }
     }
 
-    private AccessToken generateAccessToken(Optional<DomainUser> optional) throws InvalidKeyException, com.phoenix.common.exception.security.InvalidKeyException {
-        DomainUser user = optional.get();
-        long expiration = tokenProvider.getExpiryDuration();
-        Date now = new Date();
-        //String accessTokenScope = Collections.collectionToString(user.getRoles(), " ");
-        String accessTokenScope = Scope.ACCESS.toString();
-        String accessTokenId = IdGenerator.generate();
-
-        Claims claims = new DefaultClaims();
-
-        claims.setId(accessTokenId);
-        claims.setExpiration(new Date(now.getTime() + expiration));
-        claims.setIssuedAt(now);
-        claims.setSubject(String.valueOf(user.getId()));
-        claims.put("username", user.getUsername());
-        claims.put("email", user.getEmail());
-        claims.put("scope", accessTokenScope);
-
-        String accessToken = tokenProvider.generateTokenFromClaims(claims);
-
-        String refreshTokenScope = Scope.REFRESH.toString();
-        claims.setExpiration(new Date(now.getTime() + expiration * 2));
-        String refreshTokenId = IdGenerator.generate();
-        claims.put("scope", refreshTokenScope);
-        claims.setId(refreshTokenId);
-
-        String refreshToken = tokenProvider.generateTokenFromClaims(claims, expiration * 2);
-
-        AccessToken token = new AccessToken();
-
-        token.setAccessToken(accessToken);
-        token.setTokenId(accessTokenId);
-        token.setTokenType("Bearer");
-        token.setRefreshToken(refreshToken);
-        token.setNotBeforePolicy("0");
-        token.setScope(accessTokenScope);
-        token.setExpiresIn("");
-        token.setRefreshExpiresIn("");
-
-        return token;
-    }
 }
 

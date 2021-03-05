@@ -27,6 +27,7 @@ import com.phoenix.adapter.controller.AuthControllerAdapter;
 import com.phoenix.api.config.ApplicationUrls;
 import com.phoenix.domain.payload.CreateAccountPayload;
 import com.phoenix.domain.payload.SignInByPasswordPayload;
+import com.phoenix.domain.payload.SignInByQrCodePayload;
 import com.phoenix.domain.response.ApiResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -54,5 +55,10 @@ public class AuthController {
     @PostMapping(value = ApplicationUrls.CREATE_QR_CODE_FOR_SIGN_IN)
     public ApiResponse createQrCodeForSignIn(@RequestHeader(value = "Authorization") String token) {
         return authControllerAdapter.createQrCodeForSignIn(token);
+    }
+
+    @PostMapping(value = ApplicationUrls.SIGN_IN_BY_QR_CODE)
+    public ApiResponse createQrCodeForSignIn(@RequestBody SignInByQrCodePayload payload) {
+        return authControllerAdapter.signInByQrCode(payload);
     }
 }

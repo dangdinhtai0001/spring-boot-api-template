@@ -11,14 +11,12 @@ public class DefaultControllerAdapter {
          String code, message;
          ResponseType type;
         if(useCaseResponse.getStatus() == UseCaseStatus.FAILED){
-            code = HttpStatus.INTERNAL_SERVER_ERROR.toString();
             type = ResponseType.EXCEPTION;
         }else {
-            code = HttpStatus.OK.toString();
             type = ResponseType.INFO;
         }
 
         message = useCaseResponse.getMessage();
-        return new ApiResponse(code,type,useCaseResponse.getPayload(), message);
+        return new ApiResponse(type,useCaseResponse.getPayload(), message);
     }
 }

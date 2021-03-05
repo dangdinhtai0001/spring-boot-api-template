@@ -75,6 +75,10 @@ public class UserRepositoryImp {
             break;
         }
 
+        if (username == null && email == null) {
+            return null;
+        }
+
         DomainUser domainUser = new DomainUser();
 
         domainUser.setId(id);
@@ -94,7 +98,7 @@ public class UserRepositoryImp {
      * @return
      */
     @Transactional
-    public int createUser(DomainUser user){
+    public int createUser(DomainUser user) {
         String insertUserSql = "INSERT INTO user (USERNAME, EMAIL, PASSWORD) VALUES (?, ?, ?)";
 
         Query query = this.entityManager.createNativeQuery(insertUserSql);

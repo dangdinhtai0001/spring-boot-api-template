@@ -25,27 +25,17 @@
 package com.phoenix.domain.response;
 
 public class ApiResponse<T> {
-    private String code;
     private ResponseType type;
     private T body;
     private String message;
 
-    public ApiResponse(String code, ResponseType type, T body, String message) {
-        this.code = code;
+    public ApiResponse(ResponseType type, T body, String message) {
         this.type = type;
         this.body = body;
         this.message = message;
     }
 
     public ApiResponse() {
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public ResponseType getType() {
@@ -75,8 +65,7 @@ public class ApiResponse<T> {
     @Override
     public String toString() {
         return "ApiResponse{" +
-                "code='" + code + '\'' +
-                ", type='" + type + '\'' +
+                "type='" + type + '\'' +
                 ", body=" + body +
                 ", message='" + message + '\'' +
                 '}';

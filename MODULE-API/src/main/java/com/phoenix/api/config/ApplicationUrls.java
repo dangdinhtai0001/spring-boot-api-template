@@ -54,5 +54,5 @@ public final class ApplicationUrls {
     public static final String CREATE_ACCOUNT = "/create-account";
     public static final String SIGN_IN_BY_PASSWORD = "/sign-in/password";
     public static final String CREATE_QR_CODE_FOR_SIGN_IN = "/create-qr-code";
-
+    public static final String SIGN_IN_BY_QR_CODE = "/sign-in/qr";
 }

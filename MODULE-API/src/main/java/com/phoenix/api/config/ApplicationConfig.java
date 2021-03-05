@@ -50,13 +50,15 @@ public class ApplicationConfig {
                              @Qualifier("UserRepositoryImp") UserRepositoryImp userRepositoryImp,
                              @Qualifier("DefaultAuthenticationManager") @Lazy AuthenticationManager authenticationManager
     ) throws IOException, ClassNotFoundException {
-        File file = new ClassPathResource(ApplicationConstant.KEY_FILE).getFile();
+        File KeyFile = new ClassPathResource(ApplicationConstant.KEY_FILE).getFile();
+        File shortKeyFile = new ClassPathResource(ApplicationConstant.SHORT_KEY).getFile();
 
         configuration = new SpringBootConfig(
                 userRepository,
                 userRepositoryImp,
                 authenticationManager,
-                file);
+                KeyFile,
+                shortKeyFile);
     }
 
     //=======================================================
@@ -72,9 +74,14 @@ public class ApplicationConfig {
     //                   DEPENDENCY
     //=======================================================
 
-    @Bean(value = "KeyProvider")
+    @Bean(value = "Base64KeyProvider")
     public KeyProvider keyProvider() {
-        return configuration.createKeyProvider();
+        return configuration.createBase64KeyProvider();
+    }
+
+    @Bean(value = "Base32KeyProvider")
+    public KeyProvider ShortKeyProvider() {
+        return configuration.createBase32KeyProvider();
     }
 
     @Bean(value = "TokenProvider")
