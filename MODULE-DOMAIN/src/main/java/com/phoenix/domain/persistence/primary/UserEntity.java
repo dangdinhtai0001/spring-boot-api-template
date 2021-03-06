@@ -37,6 +37,9 @@ public class UserEntity extends AuditEntity<String> {
     @Column(name ="ENABLED", columnDefinition = "boolean default false")
     private boolean enabled;
 
+    @Column(name = "SECRET")
+    private String secret;
+
 
     /**
      *  * name: Tên của joinTable (USER_ROLE),

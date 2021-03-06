@@ -31,6 +31,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
 @Repository(value = "UserRepository")
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
@@ -41,6 +43,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     UserEntity save(UserEntity user);
 
     @Modifying(clearAutomatically = true)
-    @Query("update USER u set u.secret =:secret where u.username =:username")
+    @Transactional
+    @Query(value = "update user u set u.secret =:secret where u.username =:username", nativeQuery = true)
     int saveUserSecret(@Param("secret") String secret, @Param("username") String username);
 }
