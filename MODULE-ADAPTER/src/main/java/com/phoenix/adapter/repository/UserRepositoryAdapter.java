@@ -38,4 +38,9 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     public Optional<DomainUser> findUserByEmailOrUsername(String username) {
         return Optional.ofNullable(userRepositoryImp.findUserByEmailOrUsername(username));
     }
+
+    @Override
+    public int saveUserSecret(String secret, String username) {
+        return userRepository.saveUserSecret(secret, username);
+    }
 }

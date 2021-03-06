@@ -15,4 +15,6 @@ public interface UserRepositoryPort {
 
     public Optional<DomainUser> findUserByEmailOrUsername(String username);
 
+    public int saveUserSecret(String secret, String username);
+
 }

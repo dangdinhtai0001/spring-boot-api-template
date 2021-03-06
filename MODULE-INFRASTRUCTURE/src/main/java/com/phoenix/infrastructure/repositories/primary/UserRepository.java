@@ -26,6 +26,9 @@ package com.phoenix.infrastructure.repositories.primary;
 
 import com.phoenix.domain.persistence.primary.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository(value = "UserRepository")
@@ -37,4 +40,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     UserEntity save(UserEntity user);
 
+    @Modifying(clearAutomatically = true)
+    @Query("update USER u set u.secret =:secret where u.username =:username")
+    int saveUserSecret(@Param("secret") String secret, @Param("username") String username);
 }

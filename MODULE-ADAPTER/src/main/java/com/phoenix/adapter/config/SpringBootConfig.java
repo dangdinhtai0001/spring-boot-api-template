@@ -65,7 +65,7 @@ public class SpringBootConfig implements AdapterConfig {
     }
 
     public CreateQrCodeForSignIn createQrCodeForSignIn() {
-        return new CreateQrCodeForSignIn(this.createBase32KeyProvider(), this.createTokenProvider());
+        return new CreateQrCodeForSignIn(this.createTokenProvider());
     }
 
     public SignInByQrCode signInByQrCode() {
