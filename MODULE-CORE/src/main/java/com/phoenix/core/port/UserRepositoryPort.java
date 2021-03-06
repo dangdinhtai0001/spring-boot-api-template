@@ -17,4 +17,6 @@ public interface UserRepositoryPort {
 
     public int saveUserSecret(String secret, String username);
 
+    public String findSecretByUsername(String username);
+
 }

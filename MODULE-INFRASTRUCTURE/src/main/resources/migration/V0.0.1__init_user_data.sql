@@ -117,7 +117,7 @@ values ('/auth/create-account', 'CREATE_ACCOUNT', ''),
 
 insert into API_URL_PERMISSION(URL_ID, PERMISSION_ID)
 values (1, 1),
-       (3, 11)
+       (4, 11)
 ;
 commit;
 

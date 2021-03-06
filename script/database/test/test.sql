@@ -50,3 +50,8 @@ where u.USERNAME = 'dangdinhtai'
 
 update user set PASSWORD = '$2a$10$UQpcFzzwQyiqV.VwgNzDlO18VsEyGi9GAGo/f828Zx54V6NtOh0DK';
 
+select * from user;
+
+update api_url_permission set URL_ID = 4 where PERMISSION_ID = 11;
+
+commit;

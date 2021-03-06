@@ -46,4 +46,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Transactional
     @Query(value = "update user u set u.secret =:secret where u.username =:username", nativeQuery = true)
     int saveUserSecret(@Param("secret") String secret, @Param("username") String username);
+
+    @Query(value = "select u.secret from user u where u.username =:username", nativeQuery = true)
+    String findSecretByUsername(@Param("username") String username);
 }

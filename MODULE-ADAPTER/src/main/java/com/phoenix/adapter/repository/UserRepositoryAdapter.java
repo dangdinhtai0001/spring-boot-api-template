@@ -43,4 +43,9 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     public int saveUserSecret(String secret, String username) {
         return userRepository.saveUserSecret(secret, username);
     }
+
+    @Override
+    public String findSecretByUsername(String username) {
+        return userRepository.findSecretByUsername(username);
+    }
 }

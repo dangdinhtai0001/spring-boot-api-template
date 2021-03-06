@@ -23,14 +23,11 @@ import java.util.Optional;
 public class SignInByQrCode implements UseCase<SignInByQrCodePayload, AccessToken> {
 
     private final CodeVerifier verifier;
-    private final KeyProvider keyProvider;
     private final UserRepositoryPort userRepository;
     private final TokenProvider tokenProvider;
 
-    public SignInByQrCode(KeyProvider keyProvider,
-                          UserRepositoryPort userRepository,
+    public SignInByQrCode(UserRepositoryPort userRepository,
                           TokenProvider tokenProvider) {
-        this.keyProvider = keyProvider;
         this.userRepository = userRepository;
         this.tokenProvider = tokenProvider;
 
@@ -47,10 +44,12 @@ public class SignInByQrCode implements UseCase<SignInByQrCodePayload, AccessToke
     @Override
     public UseCaseResponse<AccessToken> execute(SignInByQrCodePayload payload) {
         try {
-            String key = keyProvider.getKeyWrapper().getEncoded();
+            //STEP-1: get user secret
             String code = payload.getCode();
             String username = payload.getUsername();
+            String key = userRepository.findSecretByUsername(username);
 
+            //STEP-2: verifiy code
             if (verifier.isValidCode(key, code)) {
                 Optional<DomainUser> optional = userRepository.findUserByEmailOrUsername(username);
 
@@ -62,8 +61,7 @@ public class SignInByQrCode implements UseCase<SignInByQrCodePayload, AccessToke
             }
         } catch (NullPointerException | NoSuchElementException e) {
             return new UseCaseResponse<>(UseCaseStatus.FAILED, "Can't not find user from database", null);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //e.printStackTrace();
             return new UseCaseResponse<>(UseCaseStatus.FAILED, e.getMessage(), null);
         }
