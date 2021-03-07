@@ -27,7 +27,7 @@
         <dependency>
             <groupId>com.phoenix.core</groupId>
             <artifactId>MODULE-CORE</artifactId>
-            <version>0.0.0</version>
+            <version>0.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.phoenix.domain</groupId>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.phoenix.infrastructure</groupId>
             <artifactId>MODULE-INFRASTRUCTURE</artifactId>
-            <version>0.0.0</version>
+            <version>0.3.0</version>
         </dependency><!-- =========== module =========== -->
 
         <dependency>

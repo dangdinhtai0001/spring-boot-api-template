@@ -65,6 +65,7 @@ public interface Header<T extends Header<T>> extends Map<String,Object> {
 
     /** JJWT legacy/deprecated compression algorithm header parameter name: <code>"calg"</code>
      * @deprecated use {@link #COMPRESSION_ALGORITHM} instead. */
+    @Deprecated
     public static final String DEPRECATED_COMPRESSION_ALGORITHM = "calg";
 
     /**
