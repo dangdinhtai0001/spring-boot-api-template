@@ -14,10 +14,11 @@ import com.phoenix.core.bussiness.UseCase;
 import com.phoenix.core.common.UseCaseResponse;
 import com.phoenix.core.common.UseCaseStatus;
 import com.phoenix.core.port.UserRepositoryPort;
+import com.phoenix.domain.payload.CreateQrForSignInPayload;
 
 import java.security.SecureRandom;
 
-public class CreateQrCodeForSignIn implements UseCase<String, String> {
+public class CreateQrCodeForSignIn implements UseCase<CreateQrForSignInPayload, String> {
     private final TokenProvider tokenProvider;
     private final UserRepositoryPort userRepository;
 
@@ -27,18 +28,21 @@ public class CreateQrCodeForSignIn implements UseCase<String, String> {
     }
 
     @Override
-    public void validate(String s) {
+    public void validate(CreateQrForSignInPayload payload) {
 
     }
 
     @Override
-    public UseCaseResponse<String> execute(String token) {
+    public UseCaseResponse<String> execute(CreateQrForSignInPayload payload) {
         try {
-            //STEP-1: Generate key
+            //STEP-1: Generate key + normalize payload
             SecureRandom secureRandom = new SecureRandom();
             byte[] bytes = new byte[(32 * 5) / 8];
             secureRandom.nextBytes(bytes);
             String key = Base32.encode(bytes);
+
+            String token = payload.getToken().substring(7);
+            String appName = payload.getAppName();
 
             //STEP-2: Get username
             String username = (String) tokenProvider.getClaimsFromToken(token).get("username");
@@ -48,7 +52,7 @@ public class CreateQrCodeForSignIn implements UseCase<String, String> {
 
             //STEP-4: Generate totp data
             TotpData data = (TotpData) MfaDataFactory.getMfaData(MfaType.TOTP, username, key,
-                    "AppName", HashingAlgorithm.SHA1, 6, 30);
+                    appName, HashingAlgorithm.SHA1, 6, 30);
             QrGenerator generator = new ZxingPngQrGenerator();
             byte[] imageData = generator.generate(data);
             String mimeType = generator.getImageMimeType();

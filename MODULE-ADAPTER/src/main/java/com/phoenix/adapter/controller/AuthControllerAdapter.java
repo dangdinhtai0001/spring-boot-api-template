@@ -6,6 +6,7 @@ import com.phoenix.core.bussiness.auth.SignInByQrCode;
 import com.phoenix.core.common.UseCaseResponse;
 import com.phoenix.domain.model.AccessToken;
 import com.phoenix.domain.payload.CreateAccountPayload;
+import com.phoenix.domain.payload.CreateQrForSignInPayload;
 import com.phoenix.domain.payload.SignInByPasswordPayload;
 import com.phoenix.domain.payload.SignInByQrCodePayload;
 import com.phoenix.domain.response.ApiResponse;
@@ -45,8 +46,8 @@ public class AuthControllerAdapter extends DefaultControllerAdapter {
         return response(token);
     }
 
-    public ApiResponse createQrCodeForSignIn(String token) {
-        UseCaseResponse<String> qrCode = createQrCodeForSignIn.execute(token.substring(7));
+    public ApiResponse createQrCodeForSignIn(CreateQrForSignInPayload payload) {
+        UseCaseResponse<String> qrCode = createQrCodeForSignIn.execute(payload);
         return response(qrCode);
     }
 
