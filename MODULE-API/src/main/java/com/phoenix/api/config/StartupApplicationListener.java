@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 public class StartupApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        log.info("START UP APPLICATION");
+        String name = contextRefreshedEvent.getApplicationContext().getId();
+        int beanCount = contextRefreshedEvent.getApplicationContext().getBeanDefinitionCount();
+        log.info(String.format("STARTED APPLICATION: %s with %d beans", name, beanCount));
     }
 }

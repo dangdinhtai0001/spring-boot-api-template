@@ -40,6 +40,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Configuration
 public class ApplicationConfig {
@@ -92,5 +93,10 @@ public class ApplicationConfig {
     @Bean(value = "AuthenticationManagerAdapter")
     public AuthenticationManagerAdapter authenticationManagerAdapter() {
         return configuration.createAuthenticationManagerAdapter();
+    }
+
+    @Bean(value = "ApplicationParameters")
+    public HashMap applicationParameters(){
+        return null;
     }
 }

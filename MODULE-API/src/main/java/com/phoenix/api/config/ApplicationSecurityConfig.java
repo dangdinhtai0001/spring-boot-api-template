@@ -128,19 +128,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-//        http.cors().and()
-//                .csrf()
-//                .disable()
-//                .authorizeRequests()
-//                .antMatchers(authPattern).permitAll()
-//                .antMatchers(ApplicationUrls.PUBLIC_MATCHERS).permitAll()
-//                .antMatchers(ApplicationUrls.SWAGGER_MATCHERS).permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-//                .and()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
